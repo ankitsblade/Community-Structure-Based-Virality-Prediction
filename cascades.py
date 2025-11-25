@@ -8,6 +8,7 @@ import pandas as pd
 
 from logger import logger
 
+
 @dataclass
 class CascadeNode:
     node_id: str
@@ -25,7 +26,7 @@ def build_cascade_for_submission(submission) -> List[CascadeNode]:
     submission_id = f"t3_{submission.id}"
     nodes: List[CascadeNode] = []
 
-    # root = submission
+    # root node = submission itself
     nodes.append(
         CascadeNode(
             node_id=submission_id,
@@ -48,7 +49,7 @@ def build_cascade_for_submission(submission) -> List[CascadeNode]:
         nodes.append(
             CascadeNode(
                 node_id=f"t1_{c.id}",
-                parent_id=c.parent_id,
+                parent_id=c.parent_id,  # "t3_xxx" or "t1_yyy"
                 submission_id=submission_id,
                 depth=c.depth,
                 author=str(c.author) if c.author else None,
@@ -63,16 +64,33 @@ def build_cascade_for_submission(submission) -> List[CascadeNode]:
     return nodes
 
 
-def build_cascades_for_submissions(submissions) -> pd.DataFrame:
-    """Build cascades for a list of PRAW submissions and return a single nodes DataFrame."""
+def build_cascades_for_submissions(
+    submissions,
+    subreddit_name: Optional[str] = None,
+) -> pd.DataFrame:
+    """
+    Build cascades for a list of PRAW submissions and return a nodes DataFrame.
+    If subreddit_name is provided, adds a 'subreddit' column with that value.
+    """
     all_nodes: List[Dict[str, Any]] = []
+
     for i, submission in enumerate(submissions, start=1):
-        logger.info(f"{i}. {submission.title[:80]}  (comments={submission.num_comments})")
+        logger.info(
+            f"[{subreddit_name or 'unknown'}] {i}. {submission.title[:80]} "
+            f"(comments={submission.num_comments})"
+        )
         try:
             nodes = build_cascade_for_submission(submission)
-            all_nodes.extend(asdict(n) for n in nodes)
+            node_dicts = [asdict(n) for n in nodes]
+            if subreddit_name is not None:
+                for d in node_dicts:
+                    d["subreddit"] = subreddit_name
+            all_nodes.extend(node_dicts)
         except Exception as e:
-            logger.info("   Skipping due to error:", e)
+            logger.warning(f"   Skipping submission due to error: {e}")
 
     nodes_df = pd.DataFrame(all_nodes)
+    if subreddit_name is not None and "subreddit" not in nodes_df.columns:
+        nodes_df["subreddit"] = subreddit_name
+
     return nodes_df

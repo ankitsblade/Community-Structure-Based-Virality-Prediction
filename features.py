@@ -7,25 +7,34 @@ import pandas as pd
 from scipy.stats import entropy
 
 from config import EARLY_K, MIN_COMMENTS_FOR_LABEL, MICRO_PERC, VIRAL_PERC
+from logger import logger
 
 
-def get_early_adopters(nodes_df: pd.DataFrame, submission_id: str, k: int = EARLY_K) -> List[str]:
+def get_early_adopters(
+    nodes_df: pd.DataFrame,
+    submission_id: str,
+    k: int = EARLY_K,
+) -> List[str]:
     """Return first k DISTINCT commenters by timestamp for one submission."""
     sub_df = nodes_df[
-        (nodes_df["submission_id"] == submission_id) &
-        (~nodes_df["is_submission"])
+        (nodes_df["submission_id"] == submission_id)
+        & (~nodes_df["is_submission"])
     ].sort_values("created_utc")
 
     early = (
         sub_df.dropna(subset=["author"])
-              .drop_duplicates(subset=["author"])
-              .head(k)["author"]
-              .tolist()
+        .drop_duplicates(subset=["author"])
+        .head(k)["author"]
+        .tolist()
     )
     return early
 
 
-def compute_community_features(nodes_df: pd.DataFrame, submission_id: str, k: int = EARLY_K) -> Dict[str, Any]:
+def compute_community_features(
+    nodes_df: pd.DataFrame,
+    submission_id: str,
+    k: int = EARLY_K,
+) -> Dict[str, Any]:
     sub = nodes_df[nodes_df["submission_id"] == submission_id]
 
     early_df = (
@@ -56,7 +65,10 @@ def compute_community_features(nodes_df: pd.DataFrame, submission_id: str, k: in
     }
 
 
-def compute_cascade_features(nodes_df: pd.DataFrame, submission_id: str) -> Dict[str, Any]:
+def compute_cascade_features(
+    nodes_df: pd.DataFrame,
+    submission_id: str,
+) -> Dict[str, Any]:
     """Early-ish cascade features. Avoid final-size leakage where possible."""
     sub = nodes_df[nodes_df["submission_id"] == submission_id]
     comments = sub[~sub["is_submission"]].sort_values("created_utc")
@@ -84,7 +96,8 @@ def compute_cascade_features(nodes_df: pd.DataFrame, submission_id: str) -> Dict
         time_to_5 = np.nan
 
     return {
-        "n_comments": n_comments,          # used ONLY for labeling
+        # n_comments is used only for labeling, not as an ML feature
+        "n_comments": n_comments,
         "max_depth": max_depth,
         "branching_factor": branching,
         "time_to_5": time_to_5,
@@ -92,13 +105,22 @@ def compute_cascade_features(nodes_df: pd.DataFrame, submission_id: str) -> Dict
 
 
 def build_feature_table(nodes_df: pd.DataFrame) -> pd.DataFrame:
-    """Compute community + cascade features for every submission."""
+    """
+    Compute community + cascade features for every submission.
+
+    Also propagates subreddit as a per-cascade attribute
+    (using the first node's subreddit for that submission).
+    """
     rows = []
-    for sub_id in nodes_df["submission_id"].unique():
+    for sub_id, group in nodes_df.groupby("submission_id"):
         comm_feats = compute_community_features(nodes_df, sub_id)
         cas_feats = compute_cascade_features(nodes_df, sub_id)
+
+        subreddit = group["subreddit"].iloc[0] if "subreddit" in group.columns else None
+
         row = {
             "submission_id": sub_id,
+            "subreddit": subreddit,
             **comm_feats,
             **cas_feats,
         }
@@ -109,13 +131,19 @@ def build_feature_table(nodes_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def add_labels(feature_df: pd.DataFrame) -> pd.DataFrame:
-    """Label cascades as micro-viral (0) or viral (1) based on n_comments quantiles."""
+    """
+    Label cascades as micro-viral (0) or viral (1) based on n_comments quantiles.
+    """
     df = feature_df.copy()
     df = df[df["n_comments"] >= MIN_COMMENTS_FOR_LABEL]
 
     sizes = df["n_comments"]
     p_micro = sizes.quantile(MICRO_PERC)
     p_viral = sizes.quantile(VIRAL_PERC)
+
+    logger.info(
+        f"Label thresholds: micro >= {p_micro:.1f}, viral >= {p_viral:.1f}"
+    )
 
     def label_row(n):
         if n >= p_viral:
