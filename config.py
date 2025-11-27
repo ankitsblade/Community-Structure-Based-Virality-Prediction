@@ -44,4 +44,4 @@ RANDOM_STATE = 42
 # -------------------------------------------------------
 
 SUBREDDITS = ["politics", "worldnews", "technology"]
-POSTS_PER_SUBREDDIT = 800  # adjust based on how big you want the dataset
+POSTS_PER_SUBREDDIT = 2000  # adjust based on how big you want the dataset

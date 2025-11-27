@@ -18,5 +18,7 @@ dependencies = [
     "python-louvain>=0.16",
     "scikit-learn>=1.6.1",
     "scipy>=1.13.1",
+    "torch>=2.8.0",
+    "torch-geometric>=2.6.1",
     "tqdm>=4.67.1",
 ]

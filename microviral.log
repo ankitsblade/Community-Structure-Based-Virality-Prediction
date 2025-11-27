@@ -1890,3 +1890,1356 @@ If he’s g (comments=907)
 2025-11-25 17:35:46 | INFO | microviral | [COLLECT] Saving combined cascades to disk…
 2025-11-25 17:35:46 | INFO | microviral | Saved nodes_df with 188777 rows to data/nodes_multi.parquet
 2025-11-25 17:35:46 | INFO | microviral | [COLLECT] Done ✅
+2025-11-25 23:04:39 | INFO | microviral | Loading cached multi-subreddit cascades from data/nodes_multi.parquet…
+2025-11-25 23:04:39 | INFO | microviral | Loaded nodes_df with 188777 rows from data/nodes_multi.parquet
+2025-11-25 23:04:39 | INFO | microviral | Total nodes loaded: 188777
+2025-11-25 23:04:39 | INFO | microviral | Subreddits present: {'politics': 104455, 'technology': 43304, 'worldnews': 41018}
+2025-11-25 23:04:39 | INFO | microviral | Building user graph and communities across all subreddits…
+2025-11-25 23:05:34 | INFO | microviral | Global user graph: 78321 nodes, 47008928 edges
+2025-11-25 23:05:34 | INFO | microviral | Running Louvain community detection…
+2025-11-25 23:15:38 | INFO | microviral | Detected 22 communities
+2025-11-25 23:15:38 | INFO | microviral | Attaching community IDs to nodes…
+2025-11-25 23:15:38 | INFO | microviral | Computing feature table…
+2025-11-25 23:15:57 | INFO | microviral | Feature table shape: (722, 9)
+2025-11-25 23:15:57 | INFO | microviral | Cascade size distribution saved to figures/cascade_size_distribution.png
+2025-11-25 23:15:57 | INFO | microviral | Labeling cascades (global quantiles)…
+2025-11-25 23:15:57 | INFO | microviral | Label thresholds: micro >= 458.8, viral >= 1060.0
+2025-11-25 23:15:57 | INFO | microviral | Label distribution (all subs):
+label
+0    92
+1    31
+Name: count, dtype: int64
+2025-11-25 23:15:58 | INFO | microviral | Label balance figure saved to figures/label_balance.png
+2025-11-25 23:15:58 | INFO | microviral | Running baseline ML models (community + dynamics)…
+2025-11-25 23:15:58 | INFO | microviral | [Baseline] LogReg ROC-AUC: 0.8492
+2025-11-25 23:15:58 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.7857
+2025-11-25 23:15:58 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-25 23:15:58 | INFO | microviral |   time_to_5            0.330
+2025-11-25 23:15:58 | INFO | microviral |   branching_factor     0.324
+2025-11-25 23:15:58 | INFO | microviral |   comm_entropy         0.156
+2025-11-25 23:15:58 | INFO | microviral |   comm_count           0.102
+2025-11-25 23:15:58 | INFO | microviral |   comm_concentration   0.087
+2025-11-25 23:15:58 | INFO | microviral | Feature importance figure saved to figures/feature_importances.png
+2025-11-25 23:15:58 | INFO | microviral | Running community-only models for interpretability…
+2025-11-25 23:15:58 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.6468
+2025-11-25 23:15:58 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.4881
+2025-11-25 23:15:58 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-25 23:15:58 | INFO | microviral |   comm_entropy         0.436
+2025-11-25 23:15:58 | INFO | microviral |   comm_concentration   0.287
+2025-11-25 23:15:58 | INFO | microviral |   comm_count           0.277
+2025-11-25 23:15:58 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-25 23:15:58 | INFO | microviral |   comm_concentration   +0.0477
+2025-11-25 23:15:58 | INFO | microviral |   comm_entropy         +0.2330
+2025-11-25 23:15:58 | INFO | microviral |   comm_count           -0.8375
+2025-11-25 23:15:58 | INFO | microviral | [comm_concentration] Mann-Whitney U test: U=954.500, p=5.666e-03 (0=micro-viral, 1=viral)
+2025-11-25 23:15:59 | INFO | microviral | Feature-by-label plot for 'comm_concentration' saved to figures/feature_by_label_comm_concentration.png
+2025-11-25 23:15:59 | INFO | microviral | [comm_entropy] Mann-Whitney U test: U=1934.000, p=3.022e-03 (0=micro-viral, 1=viral)
+2025-11-25 23:15:59 | INFO | microviral | Feature-by-label plot for 'comm_entropy' saved to figures/feature_by_label_comm_entropy.png
+2025-11-25 23:15:59 | INFO | microviral | [comm_count] Mann-Whitney U test: U=1953.000, p=1.924e-03 (0=micro-viral, 1=viral)
+2025-11-25 23:15:59 | INFO | microviral | Feature-by-label plot for 'comm_count' saved to figures/feature_by_label_comm_count.png
+2025-11-25 23:15:59 | INFO | microviral | Cascade graph for t3_1p08chf saved to figures/cascade_graph_t3_1p08chf.png
+2025-11-25 23:15:59 | INFO | microviral | Multi-subreddit analysis pipeline complete. ✅
+2025-11-25 23:30:18 | INFO | microviral | Loading cached multi-subreddit cascades from data/nodes_multi.parquet…
+2025-11-25 23:30:18 | INFO | microviral | Loaded nodes_df with 188777 rows from data/nodes_multi.parquet
+2025-11-25 23:30:18 | INFO | microviral | Total nodes loaded: 188777
+2025-11-25 23:30:18 | INFO | microviral | Subreddits present: {'politics': 104455, 'technology': 43304, 'worldnews': 41018}
+2025-11-25 23:30:18 | INFO | microviral | Building user graph and communities across all subreddits…
+2025-11-25 23:30:38 | INFO | microviral | Loading cached multi-subreddit cascades from data/nodes_multi.parquet…
+2025-11-25 23:30:38 | INFO | microviral | Loaded nodes_df with 188777 rows from data/nodes_multi.parquet
+2025-11-25 23:30:38 | INFO | microviral | Total nodes loaded: 188777
+2025-11-25 23:30:38 | INFO | microviral | Subreddits present: {'politics': 104455, 'technology': 43304, 'worldnews': 41018}
+2025-11-25 23:30:38 | INFO | microviral | Building user graph and communities across all subreddits…
+2025-11-25 23:31:33 | INFO | microviral | Global user graph: 78321 nodes, 47008928 edges
+2025-11-25 23:31:33 | INFO | microviral | Running Louvain community detection…
+2025-11-25 23:42:31 | INFO | microviral | Detected 25 communities
+2025-11-25 23:42:31 | INFO | microviral | Attaching community IDs to nodes…
+2025-11-25 23:42:31 | INFO | microviral | Computing feature table…
+2025-11-25 23:42:50 | INFO | microviral | Feature table shape: (722, 9)
+2025-11-25 23:42:50 | INFO | microviral | Cascade size distribution saved to figures/cascade_size_distribution.png
+2025-11-25 23:42:50 | INFO | microviral | Labeling cascades (global quantiles)…
+2025-11-25 23:42:50 | INFO | microviral | Label thresholds: micro >= 458.8, viral >= 1060.0
+2025-11-25 23:42:50 | INFO | microviral | Label distribution (all subs):
+label
+0    92
+1    31
+Name: count, dtype: int64
+2025-11-25 23:42:50 | INFO | microviral | Label balance figure saved to figures/label_balance.png
+2025-11-25 23:42:50 | INFO | microviral | Running baseline ML models (community + dynamics) on ALL subreddits…
+2025-11-25 23:42:51 | INFO | microviral | [Baseline] LogReg ROC-AUC: 0.8571
+2025-11-25 23:42:51 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.8889
+2025-11-25 23:42:51 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-25 23:42:51 | INFO | microviral |   branching_factor     0.342
+2025-11-25 23:42:51 | INFO | microviral |   time_to_5            0.339
+2025-11-25 23:42:51 | INFO | microviral |   comm_entropy         0.136
+2025-11-25 23:42:51 | INFO | microviral |   comm_concentration   0.093
+2025-11-25 23:42:51 | INFO | microviral |   comm_count           0.090
+2025-11-25 23:42:51 | INFO | microviral | Feature importance figure saved to figures/feature_importances.png
+2025-11-25 23:42:51 | INFO | microviral | Running community-only models for interpretability (ALL subreddits)…
+2025-11-25 23:42:51 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.6865
+2025-11-25 23:42:51 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.5952
+2025-11-25 23:42:51 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-25 23:42:51 | INFO | microviral |   comm_entropy         0.403
+2025-11-25 23:42:51 | INFO | microviral |   comm_concentration   0.330
+2025-11-25 23:42:51 | INFO | microviral |   comm_count           0.267
+2025-11-25 23:42:51 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-25 23:42:51 | INFO | microviral |   comm_concentration   +0.2493
+2025-11-25 23:42:51 | INFO | microviral |   comm_entropy         +0.1317
+2025-11-25 23:42:51 | INFO | microviral |   comm_count           -0.5530
+2025-11-25 23:42:51 | INFO | microviral | [comm_concentration] Mann-Whitney U test: U=928.000, p=3.491e-03 (0=micro-viral, 1=viral)
+2025-11-25 23:42:51 | INFO | microviral | Feature-by-label plot for 'comm_concentration' saved to figures/feature_by_label.png
+2025-11-25 23:42:51 | INFO | microviral | [comm_entropy] Mann-Whitney U test: U=1938.000, p=2.784e-03 (0=micro-viral, 1=viral)
+2025-11-25 23:42:51 | INFO | microviral | Feature-by-label plot for 'comm_entropy' saved to figures/feature_by_label.png
+2025-11-25 23:42:51 | INFO | microviral | [comm_count] Mann-Whitney U test: U=1938.000, p=2.637e-03 (0=micro-viral, 1=viral)
+2025-11-25 23:42:52 | INFO | microviral | Feature-by-label plot for 'comm_count' saved to figures/feature_by_label.png
+2025-11-25 23:42:52 | INFO | microviral | Cascade graph for t3_1p08chf saved to figures/cascade_graph_t3_1p08chf.png
+2025-11-25 23:42:52 | INFO | microviral | Starting per-subreddit analysis…
+2025-11-25 23:42:52 | INFO | microviral | 
+[Per-subreddit] r/politics
+2025-11-25 23:42:52 | INFO | microviral |   Number of labeled cascades: 72
+2025-11-25 23:42:52 | INFO | microviral |   Label distribution:
+label
+0    53
+1    19
+Name: count, dtype: int64
+2025-11-25 23:42:52 | INFO | microviral | Label balance figure saved to figures/label_balance_politics.png
+2025-11-25 23:42:52 | INFO | microviral |   Training baseline models for r/politics…
+2025-11-25 23:42:52 | INFO | microviral | [Baseline] LogReg ROC-AUC: 0.7708
+2025-11-25 23:42:52 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.7188
+2025-11-25 23:42:52 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-25 23:42:52 | INFO | microviral |   comm_entropy         0.285
+2025-11-25 23:42:52 | INFO | microviral |   branching_factor     0.226
+2025-11-25 23:42:52 | INFO | microviral |   comm_concentration   0.213
+2025-11-25 23:42:52 | INFO | microviral |   time_to_5            0.144
+2025-11-25 23:42:52 | INFO | microviral |   comm_count           0.132
+2025-11-25 23:42:52 | INFO | microviral | Feature importance figure saved to figures/feature_importances_politics.png
+2025-11-25 23:42:52 | INFO | microviral |   r/politics: Baseline LogReg AUC=0.7708, RF AUC=0.7188
+2025-11-25 23:42:52 | INFO | microviral |   Training community-only models for r/politics…
+2025-11-25 23:42:53 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.7812
+2025-11-25 23:42:53 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.6823
+2025-11-25 23:42:53 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-25 23:42:53 | INFO | microviral |   comm_entropy         0.408
+2025-11-25 23:42:53 | INFO | microviral |   comm_concentration   0.356
+2025-11-25 23:42:53 | INFO | microviral |   comm_count           0.236
+2025-11-25 23:42:53 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-25 23:42:53 | INFO | microviral |   comm_concentration   +0.7062
+2025-11-25 23:42:53 | INFO | microviral |   comm_entropy         -0.5677
+2025-11-25 23:42:53 | INFO | microviral |   comm_count           -0.3828
+2025-11-25 23:42:53 | INFO | microviral | [comm_concentration] Mann-Whitney U test: U=162.500, p=9.474e-06 (0=micro-viral, 1=viral)
+2025-11-25 23:42:53 | INFO | microviral | Feature-by-label plot for 'comm_concentration' saved to figures/feature_by_label_comm_concentration_politics.png
+2025-11-25 23:42:53 | INFO | microviral | [comm_entropy] Mann-Whitney U test: U=856.500, p=6.294e-06 (0=micro-viral, 1=viral)
+2025-11-25 23:42:53 | INFO | microviral | Feature-by-label plot for 'comm_entropy' saved to figures/feature_by_label_comm_entropy_politics.png
+2025-11-25 23:42:53 | INFO | microviral | [comm_count] Mann-Whitney U test: U=841.500, p=1.150e-05 (0=micro-viral, 1=viral)
+2025-11-25 23:42:53 | INFO | microviral | Feature-by-label plot for 'comm_count' saved to figures/feature_by_label_comm_count_politics.png
+2025-11-25 23:42:53 | INFO | microviral | 
+[Per-subreddit] r/technology
+2025-11-25 23:42:53 | INFO | microviral |   Number of labeled cascades: 25
+2025-11-25 23:42:53 | INFO | microviral |   Label distribution:
+label
+0    17
+1     8
+Name: count, dtype: int64
+2025-11-25 23:42:53 | WARNING | microviral |   r/technology: only 25 cascades – results may be unstable; running anyway.
+2025-11-25 23:42:53 | INFO | microviral | Label balance figure saved to figures/label_balance_technology.png
+2025-11-25 23:42:53 | INFO | microviral |   Training baseline models for r/technology…
+2025-11-25 23:42:54 | INFO | microviral | [Baseline] LogReg ROC-AUC: 0.6000
+2025-11-25 23:42:54 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.4000
+2025-11-25 23:42:54 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-25 23:42:54 | INFO | microviral |   time_to_5            0.374
+2025-11-25 23:42:54 | INFO | microviral |   branching_factor     0.219
+2025-11-25 23:42:54 | INFO | microviral |   comm_count           0.141
+2025-11-25 23:42:54 | INFO | microviral |   comm_entropy         0.134
+2025-11-25 23:42:54 | INFO | microviral |   comm_concentration   0.132
+2025-11-25 23:42:54 | INFO | microviral | Feature importance figure saved to figures/feature_importances_technology.png
+2025-11-25 23:42:54 | INFO | microviral |   r/technology: Baseline LogReg AUC=0.6000, RF AUC=0.4000
+2025-11-25 23:42:54 | INFO | microviral |   Training community-only models for r/technology…
+2025-11-25 23:42:54 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.6000
+2025-11-25 23:42:54 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.6000
+2025-11-25 23:42:54 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-25 23:42:54 | INFO | microviral |   comm_entropy         0.397
+2025-11-25 23:42:54 | INFO | microviral |   comm_concentration   0.327
+2025-11-25 23:42:54 | INFO | microviral |   comm_count           0.276
+2025-11-25 23:42:54 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-25 23:42:54 | INFO | microviral |   comm_concentration   +0.0003
+2025-11-25 23:42:54 | INFO | microviral |   comm_entropy         -0.3617
+2025-11-25 23:42:54 | INFO | microviral |   comm_count           -0.7650
+2025-11-25 23:42:54 | INFO | microviral | [comm_concentration] Mann-Whitney U test: U=37.000, p=6.097e-02 (0=micro-viral, 1=viral)
+2025-11-25 23:42:54 | INFO | microviral | Feature-by-label plot for 'comm_concentration' saved to figures/feature_by_label_comm_concentration_technology.png
+2025-11-25 23:42:54 | INFO | microviral | [comm_entropy] Mann-Whitney U test: U=101.000, p=4.634e-02 (0=micro-viral, 1=viral)
+2025-11-25 23:42:55 | INFO | microviral | Feature-by-label plot for 'comm_entropy' saved to figures/feature_by_label_comm_entropy_technology.png
+2025-11-25 23:42:55 | INFO | microviral | [comm_count] Mann-Whitney U test: U=105.000, p=2.323e-02 (0=micro-viral, 1=viral)
+2025-11-25 23:42:55 | INFO | microviral | Feature-by-label plot for 'comm_count' saved to figures/feature_by_label_comm_count_technology.png
+2025-11-25 23:42:55 | INFO | microviral | 
+[Per-subreddit] r/worldnews
+2025-11-25 23:42:55 | INFO | microviral |   Number of labeled cascades: 26
+2025-11-25 23:42:55 | INFO | microviral |   Label distribution:
+label
+0    22
+1     4
+Name: count, dtype: int64
+2025-11-25 23:42:55 | WARNING | microviral |   r/worldnews: only 26 cascades – results may be unstable; running anyway.
+2025-11-25 23:42:55 | INFO | microviral | Label balance figure saved to figures/label_balance_worldnews.png
+2025-11-25 23:42:55 | INFO | microviral |   Training baseline models for r/worldnews…
+2025-11-25 23:42:55 | INFO | microviral | [Baseline] LogReg ROC-AUC: 1.0000
+2025-11-25 23:42:55 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.5714
+2025-11-25 23:42:55 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-25 23:42:55 | INFO | microviral |   branching_factor     0.467
+2025-11-25 23:42:55 | INFO | microviral |   time_to_5            0.330
+2025-11-25 23:42:55 | INFO | microviral |   comm_entropy         0.079
+2025-11-25 23:42:55 | INFO | microviral |   comm_concentration   0.074
+2025-11-25 23:42:55 | INFO | microviral |   comm_count           0.050
+2025-11-25 23:42:55 | INFO | microviral | Feature importance figure saved to figures/feature_importances_worldnews.png
+2025-11-25 23:42:55 | INFO | microviral |   r/worldnews: Baseline LogReg AUC=1.0000, RF AUC=0.5714
+2025-11-25 23:42:55 | INFO | microviral |   Training community-only models for r/worldnews…
+2025-11-25 23:42:55 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.7857
+2025-11-25 23:42:55 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.6429
+2025-11-25 23:42:55 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-25 23:42:55 | INFO | microviral |   comm_concentration   0.405
+2025-11-25 23:42:55 | INFO | microviral |   comm_entropy         0.335
+2025-11-25 23:42:55 | INFO | microviral |   comm_count           0.260
+2025-11-25 23:42:55 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-25 23:42:55 | INFO | microviral |   comm_concentration   +0.3431
+2025-11-25 23:42:55 | INFO | microviral |   comm_entropy         -0.2631
+2025-11-25 23:42:55 | INFO | microviral |   comm_count           -0.2006
+2025-11-25 23:42:55 | INFO | microviral | [comm_concentration] Mann-Whitney U test: U=27.000, p=2.223e-01 (0=micro-viral, 1=viral)
+2025-11-25 23:42:56 | INFO | microviral | Feature-by-label plot for 'comm_concentration' saved to figures/feature_by_label_comm_concentration_worldnews.png
+2025-11-25 23:42:56 | INFO | microviral | [comm_entropy] Mann-Whitney U test: U=61.000, p=2.239e-01 (0=micro-viral, 1=viral)
+2025-11-25 23:42:56 | INFO | microviral | Feature-by-label plot for 'comm_entropy' saved to figures/feature_by_label_comm_entropy_worldnews.png
+2025-11-25 23:42:56 | INFO | microviral | [comm_count] Mann-Whitney U test: U=60.000, p=2.498e-01 (0=micro-viral, 1=viral)
+2025-11-25 23:42:56 | INFO | microviral | Feature-by-label plot for 'comm_count' saved to figures/feature_by_label_comm_count_worldnews.png
+2025-11-25 23:42:56 | INFO | microviral | Per-subreddit analysis complete. ✅
+2025-11-25 23:42:56 | INFO | microviral | Full analysis pipeline complete. ✅
+2025-11-26 00:52:12 | INFO | microviral | Loading cached multi-subreddit cascades from data/nodes_multi.parquet…
+2025-11-26 00:52:12 | INFO | microviral | Loaded nodes_df with 188777 rows from data/nodes_multi.parquet
+2025-11-26 00:52:12 | INFO | microviral | Total nodes loaded: 188777
+2025-11-26 00:52:12 | INFO | microviral | Subreddits present: {'politics': 104455, 'technology': 43304, 'worldnews': 41018}
+2025-11-26 00:52:12 | INFO | microviral | Building user graph and communities across all subreddits…
+2025-11-26 00:53:08 | INFO | microviral | Global user graph: 78321 nodes, 47008928 edges
+2025-11-26 00:53:08 | INFO | microviral | Running Louvain community detection…
+2025-11-26 01:02:19 | INFO | microviral | Detected 22 communities
+2025-11-26 01:02:19 | INFO | microviral | Attaching community IDs to nodes…
+2025-11-26 01:02:19 | INFO | microviral | Computing feature table…
+2025-11-26 01:02:38 | INFO | microviral | Feature table shape: (722, 9)
+2025-11-26 01:02:38 | INFO | microviral | Cascade size distribution saved to figures/cascade_size_distribution.png
+2025-11-26 01:02:38 | INFO | microviral | Labeling cascades (global quantiles)…
+2025-11-26 01:02:38 | INFO | microviral | Label thresholds: micro >= 458.8, viral >= 1060.0
+2025-11-26 01:02:38 | INFO | microviral | Number of labeled cascades: 123
+2025-11-26 01:02:38 | INFO | microviral | Label distribution (all subs):
+label
+0    92
+1    31
+Name: count, dtype: int64
+2025-11-26 01:02:38 | INFO | microviral | Label balance plot saved to figures/label_balance.png
+2025-11-26 01:02:38 | INFO | microviral | Running baseline ML models (community + dynamics) on ALL subreddits…
+2025-11-26 01:02:38 | INFO | microviral | [Baseline] LogReg ROC-AUC: 0.7817
+2025-11-26 01:02:38 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.7123
+2025-11-26 01:02:38 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-26 01:02:38 | INFO | microviral |   time_to_5            0.354
+2025-11-26 01:02:38 | INFO | microviral |   branching_factor     0.353
+2025-11-26 01:02:38 | INFO | microviral |   comm_entropy         0.127
+2025-11-26 01:02:38 | INFO | microviral |   comm_concentration   0.091
+2025-11-26 01:02:38 | INFO | microviral |   comm_count           0.074
+2025-11-26 01:02:38 | INFO | microviral | [GLOBAL] Baseline LogReg AUC=0.7817, RandomForest AUC=0.7123
+2025-11-26 01:02:39 | INFO | microviral | Feature importances plot saved to figures/feature_importances.png
+2025-11-26 01:02:39 | INFO | microviral | Running community-only models for interpretability (ALL subreddits)…
+2025-11-26 01:02:39 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.6012
+2025-11-26 01:02:39 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.4504
+2025-11-26 01:02:39 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-26 01:02:39 | INFO | microviral |   comm_entropy         0.443
+2025-11-26 01:02:39 | INFO | microviral |   comm_concentration   0.317
+2025-11-26 01:02:39 | INFO | microviral |   comm_count           0.240
+2025-11-26 01:02:39 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-26 01:02:39 | INFO | microviral |   comm_concentration   -0.0944
+2025-11-26 01:02:39 | INFO | microviral |   comm_entropy         -0.0178
+2025-11-26 01:02:39 | INFO | microviral |   comm_count           -0.4298
+2025-11-26 01:02:39 | INFO | microviral | [comm_concentration] Mann-Whitney U test: U=1179.500, p=1.465e-01 (0=micro-viral, 1=viral)
+2025-11-26 01:02:39 | INFO | microviral | Feature-by-label plot for 'comm_concentration' saved to figures/feature_by_label_comm_concentration.png
+2025-11-26 01:02:39 | INFO | microviral | [comm_entropy] Mann-Whitney U test: U=1692.000, p=1.196e-01 (0=micro-viral, 1=viral)
+2025-11-26 01:02:39 | INFO | microviral | Feature-by-label plot for 'comm_entropy' saved to figures/feature_by_label_comm_entropy.png
+2025-11-26 01:02:39 | INFO | microviral | [comm_count] Mann-Whitney U test: U=1729.500, p=7.181e-02 (0=micro-viral, 1=viral)
+2025-11-26 01:02:39 | INFO | microviral | Feature-by-label plot for 'comm_count' saved to figures/feature_by_label_comm_count.png
+2025-11-26 01:02:39 | INFO | microviral | Trimming cascade for t3_1p08chf from 959 to 250 nodes for visualization.
+2025-11-26 01:02:40 | INFO | microviral | Cascade graph for submission_id=t3_1p08chf saved to figures/cascade_graph_t3_1p08chf.png
+2025-11-26 01:02:40 | INFO | microviral | Starting per-subreddit analysis (metrics + logs, minimal figures)…
+2025-11-26 01:02:40 | INFO | microviral | 
+[Per-subreddit] r/politics
+2025-11-26 01:02:40 | INFO | microviral |   Number of labeled cascades: 72
+2025-11-26 01:02:40 | INFO | microviral |   Label distribution:
+label
+0    53
+1    19
+Name: count, dtype: int64
+2025-11-26 01:02:40 | INFO | microviral |   Training baseline models for r/politics…
+2025-11-26 01:02:40 | INFO | microviral | [Baseline] LogReg ROC-AUC: 0.4688
+2025-11-26 01:02:40 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.4635
+2025-11-26 01:02:40 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-26 01:02:40 | INFO | microviral |   branching_factor     0.359
+2025-11-26 01:02:40 | INFO | microviral |   time_to_5            0.284
+2025-11-26 01:02:40 | INFO | microviral |   comm_entropy         0.147
+2025-11-26 01:02:40 | INFO | microviral |   comm_concentration   0.141
+2025-11-26 01:02:40 | INFO | microviral |   comm_count           0.069
+2025-11-26 01:02:40 | INFO | microviral |   r/politics: Baseline LogReg AUC=0.4688, RF AUC=0.4635
+2025-11-26 01:02:40 | INFO | microviral |   Training community-only models for r/politics…
+2025-11-26 01:02:40 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.4844
+2025-11-26 01:02:40 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.3802
+2025-11-26 01:02:40 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-26 01:02:40 | INFO | microviral |   comm_entropy         0.458
+2025-11-26 01:02:40 | INFO | microviral |   comm_concentration   0.343
+2025-11-26 01:02:40 | INFO | microviral |   comm_count           0.199
+2025-11-26 01:02:40 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-26 01:02:40 | INFO | microviral |   comm_concentration   +0.0855
+2025-11-26 01:02:40 | INFO | microviral |   comm_entropy         -0.1346
+2025-11-26 01:02:40 | INFO | microviral |   comm_count           -0.2929
+2025-11-26 01:02:40 | INFO | microviral | 
+[Per-subreddit] r/technology
+2025-11-26 01:02:40 | INFO | microviral |   Number of labeled cascades: 25
+2025-11-26 01:02:40 | INFO | microviral |   Label distribution:
+label
+0    17
+1     8
+Name: count, dtype: int64
+2025-11-26 01:02:40 | WARNING | microviral |   r/technology: only 25 cascades – results may be unstable; running anyway.
+2025-11-26 01:02:40 | INFO | microviral |   Training baseline models for r/technology…
+2025-11-26 01:02:40 | INFO | microviral | [Baseline] LogReg ROC-AUC: 0.6000
+2025-11-26 01:02:40 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.4000
+2025-11-26 01:02:40 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-26 01:02:40 | INFO | microviral |   time_to_5            0.374
+2025-11-26 01:02:40 | INFO | microviral |   branching_factor     0.219
+2025-11-26 01:02:40 | INFO | microviral |   comm_count           0.141
+2025-11-26 01:02:40 | INFO | microviral |   comm_entropy         0.134
+2025-11-26 01:02:40 | INFO | microviral |   comm_concentration   0.132
+2025-11-26 01:02:40 | INFO | microviral |   r/technology: Baseline LogReg AUC=0.6000, RF AUC=0.4000
+2025-11-26 01:02:40 | INFO | microviral |   Training community-only models for r/technology…
+2025-11-26 01:02:41 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.6000
+2025-11-26 01:02:41 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.6000
+2025-11-26 01:02:41 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-26 01:02:41 | INFO | microviral |   comm_entropy         0.397
+2025-11-26 01:02:41 | INFO | microviral |   comm_concentration   0.327
+2025-11-26 01:02:41 | INFO | microviral |   comm_count           0.276
+2025-11-26 01:02:41 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-26 01:02:41 | INFO | microviral |   comm_concentration   +0.0003
+2025-11-26 01:02:41 | INFO | microviral |   comm_entropy         -0.3617
+2025-11-26 01:02:41 | INFO | microviral |   comm_count           -0.7650
+2025-11-26 01:02:41 | INFO | microviral | 
+[Per-subreddit] r/worldnews
+2025-11-26 01:02:41 | INFO | microviral |   Number of labeled cascades: 26
+2025-11-26 01:02:41 | INFO | microviral |   Label distribution:
+label
+0    22
+1     4
+Name: count, dtype: int64
+2025-11-26 01:02:41 | WARNING | microviral |   r/worldnews: only 26 cascades – results may be unstable; running anyway.
+2025-11-26 01:02:41 | INFO | microviral |   Training baseline models for r/worldnews…
+2025-11-26 01:02:41 | INFO | microviral | [Baseline] LogReg ROC-AUC: 0.8571
+2025-11-26 01:02:41 | INFO | microviral | [Baseline] RandomForest ROC-AUC: 0.4286
+2025-11-26 01:02:41 | INFO | microviral | [Baseline] RandomForest feature importances:
+2025-11-26 01:02:41 | INFO | microviral |   branching_factor     0.449
+2025-11-26 01:02:41 | INFO | microviral |   time_to_5            0.326
+2025-11-26 01:02:41 | INFO | microviral |   comm_entropy         0.089
+2025-11-26 01:02:41 | INFO | microviral |   comm_concentration   0.071
+2025-11-26 01:02:41 | INFO | microviral |   comm_count           0.065
+2025-11-26 01:02:41 | INFO | microviral |   r/worldnews: Baseline LogReg AUC=0.8571, RF AUC=0.4286
+2025-11-26 01:02:41 | INFO | microviral |   Training community-only models for r/worldnews…
+2025-11-26 01:02:41 | INFO | microviral | [Community-only] LogReg ROC-AUC: 0.8571
+2025-11-26 01:02:41 | INFO | microviral | [Community-only] RandomForest ROC-AUC: 0.2143
+2025-11-26 01:02:41 | INFO | microviral | [Community-only] RandomForest feature importances:
+2025-11-26 01:02:41 | INFO | microviral |   comm_entropy         0.397
+2025-11-26 01:02:41 | INFO | microviral |   comm_concentration   0.334
+2025-11-26 01:02:41 | INFO | microviral |   comm_count           0.270
+2025-11-26 01:02:41 | INFO | microviral | [Community-only] Logistic Regression coefficients:
+2025-11-26 01:02:41 | INFO | microviral |   comm_concentration   +0.0644
+2025-11-26 01:02:41 | INFO | microviral |   comm_entropy         -0.1494
+2025-11-26 01:02:41 | INFO | microviral |   comm_count           -0.3784
+2025-11-26 01:02:41 | INFO | microviral | Creating grouped multi-subreddit plots…
+2025-11-26 01:02:41 | INFO | microviral | Multi-subreddit label balance plot saved to figures/label_balance_by_subreddit.png
+2025-11-26 01:02:42 | INFO | microviral | Multi-subreddit feature-by-label plot for 'comm_concentration' saved to figures/feature_by_label_comm_concentration_by_subreddit.png
+2025-11-26 01:02:42 | INFO | microviral | Multi-subreddit feature-by-label plot for 'comm_entropy' saved to figures/feature_by_label_comm_entropy_by_subreddit.png
+2025-11-26 01:02:55 | INFO | microviral | Multi-subreddit feature-by-label plot for 'comm_count' saved to figures/feature_by_label_comm_count_by_subreddit.png
+2025-11-26 01:02:55 | INFO | microviral | Per-subreddit analysis complete. ✅
+2025-11-26 01:02:55 | INFO | microviral | Full analysis pipeline complete. ✅
+2025-11-26 02:46:22 | INFO | microviral | === GNN PIPELINE START ===
+2025-11-26 02:46:22 | INFO | microviral | Loading cached cascades from data/nodes_multi.parquet…
+2025-11-26 02:46:22 | INFO | microviral | Loaded nodes_df with 188777 rows from data/nodes_multi.parquet
+2025-11-26 02:46:22 | INFO | microviral | Loaded 188777 nodes.
+2025-11-26 02:46:22 | INFO | microviral | Subreddits present: {'politics': 104455, 'technology': 43304, 'worldnews': 41018}
+2025-11-26 02:46:22 | INFO | microviral | Building user graph and detecting communities…
+2025-11-26 02:47:16 | INFO | microviral | Global user graph: 78321 nodes, 47008928 edges
+2025-11-26 02:47:16 | INFO | microviral | Running Louvain community detection…
+2025-11-26 02:57:13 | INFO | microviral | Detected 24 communities
+2025-11-26 02:57:14 | INFO | microviral | Building feature table…
+2025-11-26 02:57:32 | INFO | microviral | Feature table shape: (722, 9)
+2025-11-26 02:57:32 | INFO | microviral | Labeling cascades (global quantiles)…
+2025-11-26 02:57:32 | INFO | microviral | Label thresholds: micro >= 458.8, viral >= 1060.0
+2025-11-26 02:57:32 | INFO | microviral | Labeled cascades: 123
+2025-11-26 02:57:32 | INFO | microviral | Label distribution:
+label
+0    92
+1    31
+Name: count, dtype: int64
+2025-11-26 02:57:32 | INFO | microviral | 
+=== [GNN] GLOBAL MODEL (feature_config='full') ===
+2025-11-26 02:57:32 | INFO | microviral | [GLOBAL] Building dataset (feature_config='full')…
+2025-11-26 02:57:38 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='full').
+2025-11-26 02:57:38 | INFO | microviral | [GLOBAL_full] Dataset split: 86 train / 18 val / 19 test graphs.
+2025-11-26 02:57:38 | INFO | microviral | [GLOBAL_full] Using device: cuda
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 001 | Train loss=0.6945, AUC=0.6378 | Val loss=0.5983, AUC=0.3778
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 002 | Train loss=0.6358, AUC=0.4032 | Val loss=0.5124, AUC=0.3111
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 003 | Train loss=0.6361, AUC=0.3024 | Val loss=0.4843, AUC=0.3111
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 004 | Train loss=0.6565, AUC=0.3058 | Val loss=0.4784, AUC=0.3111
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 005 | Train loss=0.6221, AUC=0.2970 | Val loss=0.4842, AUC=0.3333
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 006 | Train loss=0.6296, AUC=0.3091 | Val loss=0.4920, AUC=0.3333
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 007 | Train loss=0.6154, AUC=0.3065 | Val loss=0.5063, AUC=0.4000
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 008 | Train loss=0.6188, AUC=0.3233 | Val loss=0.5192, AUC=0.4444
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 009 | Train loss=0.6067, AUC=0.3427 | Val loss=0.5288, AUC=0.4667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 010 | Train loss=0.6076, AUC=0.3817 | Val loss=0.5290, AUC=0.5333
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 011 | Train loss=0.6084, AUC=0.4147 | Val loss=0.5210, AUC=0.6000
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 012 | Train loss=0.5945, AUC=0.4637 | Val loss=0.5115, AUC=0.6222
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 013 | Train loss=0.5996, AUC=0.5087 | Val loss=0.5001, AUC=0.6222
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 014 | Train loss=0.5964, AUC=0.5087 | Val loss=0.4943, AUC=0.6889
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 015 | Train loss=0.5980, AUC=0.6452 | Val loss=0.4877, AUC=0.6444
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 016 | Train loss=0.5805, AUC=0.6257 | Val loss=0.4909, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 017 | Train loss=0.5749, AUC=0.7776 | Val loss=0.4911, AUC=0.6444
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 018 | Train loss=0.5812, AUC=0.7339 | Val loss=0.4924, AUC=0.6889
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 019 | Train loss=0.5857, AUC=0.6774 | Val loss=0.4973, AUC=0.6889
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 020 | Train loss=0.5716, AUC=0.6519 | Val loss=0.5043, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 021 | Train loss=0.5610, AUC=0.7749 | Val loss=0.4931, AUC=0.6444
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 022 | Train loss=0.5479, AUC=0.7695 | Val loss=0.4835, AUC=0.6444
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 023 | Train loss=0.5606, AUC=0.7164 | Val loss=0.4710, AUC=0.6444
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 024 | Train loss=0.5587, AUC=0.7446 | Val loss=0.4718, AUC=0.6444
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 025 | Train loss=0.5494, AUC=0.7722 | Val loss=0.4780, AUC=0.6444
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 026 | Train loss=0.5412, AUC=0.7513 | Val loss=0.4837, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 027 | Train loss=0.5332, AUC=0.7372 | Val loss=0.5042, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 028 | Train loss=0.5320, AUC=0.7742 | Val loss=0.4877, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 029 | Train loss=0.5599, AUC=0.7164 | Val loss=0.4757, AUC=0.6889
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 030 | Train loss=0.5386, AUC=0.7258 | Val loss=0.4852, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 031 | Train loss=0.5405, AUC=0.7507 | Val loss=0.4934, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 032 | Train loss=0.5262, AUC=0.7480 | Val loss=0.4812, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 033 | Train loss=0.5247, AUC=0.7560 | Val loss=0.4761, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 034 | Train loss=0.5110, AUC=0.7641 | Val loss=0.4790, AUC=0.6667
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 035 | Train loss=0.5386, AUC=0.7164 | Val loss=0.4854, AUC=0.6889
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 036 | Train loss=0.5226, AUC=0.7587 | Val loss=0.4658, AUC=0.6889
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 037 | Train loss=0.5391, AUC=0.7292 | Val loss=0.4610, AUC=0.6889
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 038 | Train loss=0.5146, AUC=0.7688 | Val loss=0.4802, AUC=0.7111
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 039 | Train loss=0.5126, AUC=0.7735 | Val loss=0.4781, AUC=0.7111
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Epoch 040 | Train loss=0.5196, AUC=0.7849 | Val loss=0.4607, AUC=0.6889
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Loading best model (val AUC=0.7111)…
+2025-11-26 02:57:40 | INFO | microviral | [GLOBAL_full] Final Test Loss=0.5298, Test ROC-AUC=0.5333
+2025-11-26 02:57:40 | INFO | microviral | [RESULT] GLOBAL GNN metrics: {'train_auc': 0.7849462365591398, 'val_auc': 0.7111111111111111, 'test_auc': 0.5333333333333333}
+2025-11-26 02:57:40 | INFO | microviral | 
+=== [GNN] PER-SUBREDDIT MODELS (feature_config='full') ===
+2025-11-26 02:57:40 | INFO | microviral | [PER-SUB] Building shared dataset (feature_config='full')…
+2025-11-26 02:57:47 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='full').
+2025-11-26 02:57:47 | INFO | microviral | [PER-SUB] Training GNN for r/politics on 72 cascades…
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Dataset split: 50 train / 10 val / 12 test graphs.
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Using device: cuda
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 001 | Train loss=0.5474, AUC=0.4275 | Val loss=0.8565, AUC=0.3200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 002 | Train loss=0.5202, AUC=0.4250 | Val loss=1.0029, AUC=0.3200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 003 | Train loss=0.5094, AUC=0.4200 | Val loss=1.0513, AUC=0.3200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 004 | Train loss=0.5720, AUC=0.3650 | Val loss=1.0433, AUC=0.3200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 005 | Train loss=0.5161, AUC=0.4025 | Val loss=0.9748, AUC=0.3200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 006 | Train loss=0.5286, AUC=0.4500 | Val loss=0.9098, AUC=0.3200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 007 | Train loss=0.5200, AUC=0.4425 | Val loss=0.8581, AUC=0.3200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 008 | Train loss=0.5029, AUC=0.3075 | Val loss=0.8271, AUC=0.3200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 009 | Train loss=0.5098, AUC=0.4175 | Val loss=0.8281, AUC=0.4400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 010 | Train loss=0.5319, AUC=0.4050 | Val loss=0.8431, AUC=0.4400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 011 | Train loss=0.4934, AUC=0.3725 | Val loss=0.8573, AUC=0.4400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 012 | Train loss=0.5088, AUC=0.4450 | Val loss=0.8844, AUC=0.4400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 013 | Train loss=0.4701, AUC=0.4625 | Val loss=0.9071, AUC=0.4400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 014 | Train loss=0.5809, AUC=0.3475 | Val loss=0.9369, AUC=0.4400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 015 | Train loss=0.4805, AUC=0.4600 | Val loss=0.9286, AUC=0.4400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 016 | Train loss=0.4778, AUC=0.5075 | Val loss=0.9187, AUC=0.4400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 017 | Train loss=0.5128, AUC=0.4125 | Val loss=0.9117, AUC=0.4800
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 018 | Train loss=0.4711, AUC=0.5300 | Val loss=0.9005, AUC=0.5600
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 019 | Train loss=0.5114, AUC=0.6175 | Val loss=0.8993, AUC=0.6000
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 020 | Train loss=0.4708, AUC=0.5725 | Val loss=0.8891, AUC=0.6400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 021 | Train loss=0.5355, AUC=0.5000 | Val loss=0.8894, AUC=0.6400
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 022 | Train loss=0.5241, AUC=0.5175 | Val loss=0.8733, AUC=0.6800
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 023 | Train loss=0.5491, AUC=0.5925 | Val loss=0.8509, AUC=0.6800
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 024 | Train loss=0.5072, AUC=0.5250 | Val loss=0.8209, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 025 | Train loss=0.4916, AUC=0.6400 | Val loss=0.8039, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 026 | Train loss=0.4984, AUC=0.7400 | Val loss=0.8047, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 027 | Train loss=0.4877, AUC=0.6900 | Val loss=0.8150, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 028 | Train loss=0.5460, AUC=0.4275 | Val loss=0.8345, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 029 | Train loss=0.4955, AUC=0.7100 | Val loss=0.8454, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 030 | Train loss=0.4996, AUC=0.6150 | Val loss=0.8573, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 031 | Train loss=0.5052, AUC=0.7025 | Val loss=0.8653, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 032 | Train loss=0.5030, AUC=0.7475 | Val loss=0.8593, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 033 | Train loss=0.4875, AUC=0.7675 | Val loss=0.8439, AUC=0.7600
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 034 | Train loss=0.4692, AUC=0.6775 | Val loss=0.8322, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 035 | Train loss=0.4770, AUC=0.8450 | Val loss=0.8377, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 036 | Train loss=0.4796, AUC=0.7050 | Val loss=0.8385, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 037 | Train loss=0.4824, AUC=0.6725 | Val loss=0.8427, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 038 | Train loss=0.4611, AUC=0.6850 | Val loss=0.8457, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 039 | Train loss=0.4554, AUC=0.7050 | Val loss=0.8515, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Epoch 040 | Train loss=0.4489, AUC=0.7800 | Val loss=0.8562, AUC=0.7200
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Loading best model (val AUC=0.7600)…
+2025-11-26 02:57:47 | INFO | microviral | [SUB_politics_full] Final Test Loss=0.7053, Test ROC-AUC=0.4688
+2025-11-26 02:57:47 | INFO | microviral | [PER-SUB] Training GNN for r/technology on 25 cascades…
+2025-11-26 02:57:47 | INFO | microviral | [SUB_technology_full] Dataset split: 17 train / 3 val / 5 test graphs.
+2025-11-26 02:57:47 | INFO | microviral | [SUB_technology_full] Using device: cuda
+2025-11-26 02:57:47 | INFO | microviral | [SUB_technology_full] Epoch 001 | Train loss=0.6016, AUC=0.6731 | Val loss=0.8589, AUC=0.0000
+2025-11-26 02:57:47 | INFO | microviral | [SUB_technology_full] Epoch 002 | Train loss=0.5826, AUC=0.5769 | Val loss=0.9581, AUC=0.0000
+2025-11-26 02:57:47 | INFO | microviral | [SUB_technology_full] Epoch 003 | Train loss=0.5695, AUC=0.3654 | Val loss=1.0617, AUC=0.0000
+2025-11-26 02:57:47 | INFO | microviral | [SUB_technology_full] Epoch 004 | Train loss=0.5601, AUC=0.4615 | Val loss=1.1652, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 005 | Train loss=0.5619, AUC=0.3846 | Val loss=1.2483, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 006 | Train loss=0.5549, AUC=0.4423 | Val loss=1.3053, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 007 | Train loss=0.5729, AUC=0.3846 | Val loss=1.3327, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 008 | Train loss=0.5516, AUC=0.5769 | Val loss=1.3327, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 009 | Train loss=0.5656, AUC=0.4038 | Val loss=1.3133, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 010 | Train loss=0.5639, AUC=0.4423 | Val loss=1.2800, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 011 | Train loss=0.5712, AUC=0.4038 | Val loss=1.2372, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 012 | Train loss=0.5649, AUC=0.4038 | Val loss=1.1892, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 013 | Train loss=0.5445, AUC=0.5385 | Val loss=1.1445, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 014 | Train loss=0.5573, AUC=0.4038 | Val loss=1.1039, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 015 | Train loss=0.5513, AUC=0.4808 | Val loss=1.0689, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 016 | Train loss=0.5508, AUC=0.4423 | Val loss=1.0418, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 017 | Train loss=0.5447, AUC=0.5192 | Val loss=1.0225, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 018 | Train loss=0.5455, AUC=0.5385 | Val loss=1.0109, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 019 | Train loss=0.5472, AUC=0.4808 | Val loss=1.0054, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 020 | Train loss=0.5478, AUC=0.4808 | Val loss=1.0066, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 021 | Train loss=0.5438, AUC=0.6346 | Val loss=1.0118, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 022 | Train loss=0.5444, AUC=0.5577 | Val loss=1.0212, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 023 | Train loss=0.5478, AUC=0.5385 | Val loss=1.0334, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 024 | Train loss=0.5383, AUC=0.6154 | Val loss=1.0469, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 025 | Train loss=0.5407, AUC=0.5769 | Val loss=1.0637, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 026 | Train loss=0.5361, AUC=0.5769 | Val loss=1.0818, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 027 | Train loss=0.5439, AUC=0.5192 | Val loss=1.0995, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 028 | Train loss=0.5368, AUC=0.6346 | Val loss=1.1155, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 029 | Train loss=0.5437, AUC=0.5192 | Val loss=1.1289, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 030 | Train loss=0.5632, AUC=0.3654 | Val loss=1.1379, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 031 | Train loss=0.5431, AUC=0.5962 | Val loss=1.1456, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 032 | Train loss=0.5430, AUC=0.6154 | Val loss=1.1452, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 033 | Train loss=0.5407, AUC=0.6538 | Val loss=1.1402, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 034 | Train loss=0.5477, AUC=0.4615 | Val loss=1.1306, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 035 | Train loss=0.5429, AUC=0.5000 | Val loss=1.1154, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 036 | Train loss=0.5321, AUC=0.6538 | Val loss=1.1005, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 037 | Train loss=0.5368, AUC=0.5577 | Val loss=1.0858, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 038 | Train loss=0.5320, AUC=0.5962 | Val loss=1.0720, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 039 | Train loss=0.5360, AUC=0.5962 | Val loss=1.0636, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Epoch 040 | Train loss=0.5563, AUC=0.3846 | Val loss=1.0543, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Loading best model (val AUC=0.0000)…
+2025-11-26 02:57:48 | INFO | microviral | [SUB_technology_full] Final Test Loss=0.7742, Test ROC-AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [PER-SUB] Training GNN for r/worldnews on 26 cascades…
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Dataset split: 18 train / 3 val / 5 test graphs.
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Using device: cuda
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 001 | Train loss=0.9334, AUC=0.9111 | Val loss=0.7330, AUC=1.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 002 | Train loss=0.8548, AUC=0.5778 | Val loss=0.7069, AUC=1.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 003 | Train loss=0.7665, AUC=0.9556 | Val loss=0.6933, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 004 | Train loss=0.7053, AUC=0.7111 | Val loss=0.6915, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 005 | Train loss=0.6603, AUC=0.0667 | Val loss=0.7011, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 006 | Train loss=0.6270, AUC=0.2222 | Val loss=0.7189, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 007 | Train loss=0.5809, AUC=0.1333 | Val loss=0.7432, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 008 | Train loss=0.5568, AUC=0.2000 | Val loss=0.7721, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 009 | Train loss=0.5355, AUC=0.1333 | Val loss=0.8025, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 010 | Train loss=0.5251, AUC=0.2667 | Val loss=0.8355, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 011 | Train loss=0.5034, AUC=0.2667 | Val loss=0.8717, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 012 | Train loss=0.5132, AUC=0.2222 | Val loss=0.9088, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 013 | Train loss=0.5090, AUC=0.1778 | Val loss=0.9436, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 014 | Train loss=0.5157, AUC=0.0889 | Val loss=0.9740, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 015 | Train loss=0.5238, AUC=0.0889 | Val loss=0.9979, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 016 | Train loss=0.5257, AUC=0.1333 | Val loss=1.0142, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 017 | Train loss=0.5130, AUC=0.2444 | Val loss=1.0237, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 018 | Train loss=0.5310, AUC=0.1333 | Val loss=1.0263, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 019 | Train loss=0.5142, AUC=0.2444 | Val loss=1.0230, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 020 | Train loss=0.5234, AUC=0.1556 | Val loss=1.0143, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 021 | Train loss=0.5462, AUC=0.1111 | Val loss=1.0007, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 022 | Train loss=0.5171, AUC=0.0889 | Val loss=0.9840, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 023 | Train loss=0.5176, AUC=0.1111 | Val loss=0.9655, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 024 | Train loss=0.5232, AUC=0.2000 | Val loss=0.9465, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 025 | Train loss=0.5076, AUC=0.2000 | Val loss=0.9273, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 026 | Train loss=0.5040, AUC=0.1333 | Val loss=0.9081, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 027 | Train loss=0.5204, AUC=0.1778 | Val loss=0.8883, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 028 | Train loss=0.4876, AUC=0.2000 | Val loss=0.8696, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 029 | Train loss=0.4905, AUC=0.2222 | Val loss=0.8525, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 030 | Train loss=0.4870, AUC=0.1778 | Val loss=0.8376, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 031 | Train loss=0.5032, AUC=0.1333 | Val loss=0.8237, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 032 | Train loss=0.4951, AUC=0.1778 | Val loss=0.8109, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 033 | Train loss=0.5116, AUC=0.1111 | Val loss=0.7989, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 034 | Train loss=0.4890, AUC=0.2222 | Val loss=0.7878, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 035 | Train loss=0.4812, AUC=0.3556 | Val loss=0.7781, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 036 | Train loss=0.4973, AUC=0.1111 | Val loss=0.7692, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 037 | Train loss=0.4927, AUC=0.1333 | Val loss=0.7616, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 038 | Train loss=0.4876, AUC=0.1556 | Val loss=0.7551, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 039 | Train loss=0.4798, AUC=0.2667 | Val loss=0.7493, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Epoch 040 | Train loss=0.4787, AUC=0.3111 | Val loss=0.7442, AUC=0.0000
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Loading best model (val AUC=1.0000)…
+2025-11-26 02:57:48 | INFO | microviral | [SUB_worldnews_full] Final Test Loss=0.2514, Test ROC-AUC=nan
+2025-11-26 02:57:48 | INFO | microviral | [RESULT] PER-SUBREDDIT GNN metrics: {'politics': {'train_auc': 0.78, 'val_auc': 0.76, 'test_auc': 0.46875}, 'technology': {'train_auc': 0.3846153846153846, 'val_auc': 0.0, 'test_auc': 0.0}, 'worldnews': {'train_auc': 0.31111111111111117, 'val_auc': 1.0, 'test_auc': nan}}
+2025-11-26 02:57:48 | INFO | microviral | 
+=== [GNN] CROSS-SUBREDDIT GENERALIZATION (feature_config='full') ===
+2025-11-26 02:57:48 | INFO | microviral | [X-SUB] Building shared dataset (feature_config='full')…
+2025-11-26 02:57:55 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='full').
+2025-11-26 02:57:55 | INFO | microviral | [X-SUB] Held-out r/politics: 51 train/val, 72 test cascades.
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Using device: cuda
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 001 | Train loss=0.6106, AUC=0.4102 | Val loss=0.6222, AUC=0.3810
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 002 | Train loss=0.5863, AUC=0.2969 | Val loss=0.6239, AUC=0.3333
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 003 | Train loss=0.5091, AUC=0.2266 | Val loss=0.6375, AUC=0.3333
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 004 | Train loss=0.4953, AUC=0.1797 | Val loss=0.6565, AUC=0.3333
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 005 | Train loss=0.4944, AUC=0.1953 | Val loss=0.6748, AUC=0.3333
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 006 | Train loss=0.4938, AUC=0.1875 | Val loss=0.6853, AUC=0.3333
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 007 | Train loss=0.4916, AUC=0.2344 | Val loss=0.6843, AUC=0.3333
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 008 | Train loss=0.5903, AUC=0.1914 | Val loss=0.6704, AUC=0.3810
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 009 | Train loss=0.5543, AUC=0.2852 | Val loss=0.6487, AUC=0.4286
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 010 | Train loss=0.5399, AUC=0.3047 | Val loss=0.6287, AUC=0.5238
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 011 | Train loss=0.6091, AUC=0.3203 | Val loss=0.6125, AUC=0.6190
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 012 | Train loss=0.5372, AUC=0.4492 | Val loss=0.6009, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 013 | Train loss=0.5680, AUC=0.6484 | Val loss=0.5941, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 014 | Train loss=0.5256, AUC=0.6797 | Val loss=0.5903, AUC=0.8095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 015 | Train loss=0.5720, AUC=0.7266 | Val loss=0.5878, AUC=0.8095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 016 | Train loss=0.4695, AUC=0.7617 | Val loss=0.5852, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 017 | Train loss=0.5308, AUC=0.7969 | Val loss=0.5832, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 018 | Train loss=0.5941, AUC=0.7969 | Val loss=0.5822, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 019 | Train loss=0.4637, AUC=0.8477 | Val loss=0.5807, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 020 | Train loss=0.4656, AUC=0.8359 | Val loss=0.5812, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 021 | Train loss=0.5071, AUC=0.7891 | Val loss=0.5849, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 022 | Train loss=0.5020, AUC=0.8359 | Val loss=0.5884, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 023 | Train loss=0.4953, AUC=0.8008 | Val loss=0.5896, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 024 | Train loss=0.4272, AUC=0.8516 | Val loss=0.5882, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 025 | Train loss=0.4881, AUC=0.7734 | Val loss=0.5852, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 026 | Train loss=0.4354, AUC=0.8320 | Val loss=0.5797, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 027 | Train loss=0.4392, AUC=0.7148 | Val loss=0.5753, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 028 | Train loss=0.5209, AUC=0.8945 | Val loss=0.5675, AUC=0.7619
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 029 | Train loss=0.4531, AUC=0.8594 | Val loss=0.5544, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 030 | Train loss=0.4090, AUC=0.8242 | Val loss=0.5449, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 031 | Train loss=0.5039, AUC=0.8438 | Val loss=0.5380, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 032 | Train loss=0.4840, AUC=0.8633 | Val loss=0.5324, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 033 | Train loss=0.4017, AUC=0.8555 | Val loss=0.5295, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 034 | Train loss=0.4603, AUC=0.8945 | Val loss=0.5262, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 035 | Train loss=0.3611, AUC=0.8594 | Val loss=0.5226, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 036 | Train loss=0.4621, AUC=0.8398 | Val loss=0.5226, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 037 | Train loss=0.4395, AUC=0.8711 | Val loss=0.5289, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 038 | Train loss=0.4667, AUC=0.8516 | Val loss=0.5302, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 039 | Train loss=0.4686, AUC=0.8945 | Val loss=0.5212, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 040 | Train loss=0.4471, AUC=0.8633 | Val loss=0.5138, AUC=0.7143
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Loading best model (val AUC=0.8095)…
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Held-out r/politics: Test Loss=0.6473, Test ROC-AUC=0.6256
+2025-11-26 02:57:55 | INFO | microviral | [X-SUB] Held-out r/technology: 98 train/val, 25 test cascades.
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Using device: cuda
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 001 | Train loss=0.5860, AUC=0.4657 | Val loss=0.7156, AUC=0.3095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 002 | Train loss=0.4864, AUC=0.3569 | Val loss=0.7819, AUC=0.3095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 003 | Train loss=0.5647, AUC=0.3256 | Val loss=0.8378, AUC=0.3095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 004 | Train loss=0.5497, AUC=0.3327 | Val loss=0.8322, AUC=0.3095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 005 | Train loss=0.4841, AUC=0.2994 | Val loss=0.8028, AUC=0.3214
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 006 | Train loss=0.5532, AUC=0.2419 | Val loss=0.7827, AUC=0.3214
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 007 | Train loss=0.5405, AUC=0.2954 | Val loss=0.7523, AUC=0.3095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 008 | Train loss=0.5800, AUC=0.3599 | Val loss=0.7294, AUC=0.3095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 009 | Train loss=0.4820, AUC=0.3528 | Val loss=0.7056, AUC=0.3095
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 010 | Train loss=0.5147, AUC=0.3448 | Val loss=0.7041, AUC=0.3214
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 011 | Train loss=0.5526, AUC=0.4183 | Val loss=0.7140, AUC=0.3214
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 012 | Train loss=0.4890, AUC=0.3679 | Val loss=0.7177, AUC=0.3214
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 013 | Train loss=0.4755, AUC=0.5423 | Val loss=0.7277, AUC=0.3214
+2025-11-26 02:57:55 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 014 | Train loss=0.5200, AUC=0.4093 | Val loss=0.7415, AUC=0.3333
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 015 | Train loss=0.4960, AUC=0.3942 | Val loss=0.7414, AUC=0.3690
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 016 | Train loss=0.4862, AUC=0.5615 | Val loss=0.7401, AUC=0.3929
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 017 | Train loss=0.4578, AUC=0.5141 | Val loss=0.7322, AUC=0.4524
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 018 | Train loss=0.5039, AUC=0.3821 | Val loss=0.7354, AUC=0.4881
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 019 | Train loss=0.5262, AUC=0.5736 | Val loss=0.7296, AUC=0.5714
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 020 | Train loss=0.4954, AUC=0.7077 | Val loss=0.7094, AUC=0.5952
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 021 | Train loss=0.4952, AUC=0.7268 | Val loss=0.6919, AUC=0.6786
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 022 | Train loss=0.5313, AUC=0.6744 | Val loss=0.6828, AUC=0.7024
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 023 | Train loss=0.4886, AUC=0.7611 | Val loss=0.6675, AUC=0.6905
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 024 | Train loss=0.5041, AUC=0.7248 | Val loss=0.6627, AUC=0.6905
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 025 | Train loss=0.5031, AUC=0.7319 | Val loss=0.6649, AUC=0.7024
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 026 | Train loss=0.4722, AUC=0.7208 | Val loss=0.6697, AUC=0.7024
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 027 | Train loss=0.4828, AUC=0.7369 | Val loss=0.6935, AUC=0.7143
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 028 | Train loss=0.4610, AUC=0.7692 | Val loss=0.6999, AUC=0.7024
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 029 | Train loss=0.4556, AUC=0.7188 | Val loss=0.7033, AUC=0.7024
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 030 | Train loss=0.5053, AUC=0.6895 | Val loss=0.6869, AUC=0.7143
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 031 | Train loss=0.4891, AUC=0.6815 | Val loss=0.6558, AUC=0.6905
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 032 | Train loss=0.4321, AUC=0.7379 | Val loss=0.6480, AUC=0.6786
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 033 | Train loss=0.4569, AUC=0.7258 | Val loss=0.6732, AUC=0.6905
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 034 | Train loss=0.4248, AUC=0.7571 | Val loss=0.6975, AUC=0.7143
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 035 | Train loss=0.4472, AUC=0.8024 | Val loss=0.7160, AUC=0.7143
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 036 | Train loss=0.5089, AUC=0.7218 | Val loss=0.6903, AUC=0.7024
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 037 | Train loss=0.4661, AUC=0.7964 | Val loss=0.6488, AUC=0.6786
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 038 | Train loss=0.4551, AUC=0.7490 | Val loss=0.6210, AUC=0.6786
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 039 | Train loss=0.4936, AUC=0.7399 | Val loss=0.6336, AUC=0.6786
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 040 | Train loss=0.4521, AUC=0.7530 | Val loss=0.6623, AUC=0.6905
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Loading best model (val AUC=0.7143)…
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Held-out r/technology: Test Loss=0.5983, Test ROC-AUC=0.7500
+2025-11-26 02:57:56 | INFO | microviral | [X-SUB] Held-out r/worldnews: 97 train/val, 26 test cascades.
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Using device: cuda
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 001 | Train loss=0.6212, AUC=0.4386 | Val loss=0.6733, AUC=0.4762
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 002 | Train loss=0.6073, AUC=0.3211 | Val loss=0.7321, AUC=0.4524
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 003 | Train loss=0.5930, AUC=0.2895 | Val loss=0.7343, AUC=0.4524
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 004 | Train loss=0.5580, AUC=0.3158 | Val loss=0.7139, AUC=0.4524
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 005 | Train loss=0.6023, AUC=0.3789 | Val loss=0.7026, AUC=0.4524
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 006 | Train loss=0.5540, AUC=0.3254 | Val loss=0.6855, AUC=0.4524
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 007 | Train loss=0.6086, AUC=0.3825 | Val loss=0.6762, AUC=0.4405
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 008 | Train loss=0.5840, AUC=0.4781 | Val loss=0.6678, AUC=0.4643
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 009 | Train loss=0.5992, AUC=0.4526 | Val loss=0.6648, AUC=0.5000
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 010 | Train loss=0.5498, AUC=0.5491 | Val loss=0.6630, AUC=0.5476
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 011 | Train loss=0.5688, AUC=0.5325 | Val loss=0.6711, AUC=0.5476
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 012 | Train loss=0.6181, AUC=0.4553 | Val loss=0.6824, AUC=0.5357
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 013 | Train loss=0.5357, AUC=0.4754 | Val loss=0.6796, AUC=0.5952
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 014 | Train loss=0.6361, AUC=0.4921 | Val loss=0.6799, AUC=0.5357
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 015 | Train loss=0.5870, AUC=0.6351 | Val loss=0.6688, AUC=0.5119
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 016 | Train loss=0.5562, AUC=0.4211 | Val loss=0.6595, AUC=0.5476
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 017 | Train loss=0.5701, AUC=0.5851 | Val loss=0.6624, AUC=0.5476
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 018 | Train loss=0.5568, AUC=0.5763 | Val loss=0.6693, AUC=0.5119
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 019 | Train loss=0.5432, AUC=0.6579 | Val loss=0.6821, AUC=0.5000
+2025-11-26 02:57:56 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 020 | Train loss=0.5543, AUC=0.6412 | Val loss=0.6951, AUC=0.5000
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 021 | Train loss=0.5802, AUC=0.6079 | Val loss=0.6943, AUC=0.5238
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 022 | Train loss=0.5765, AUC=0.6623 | Val loss=0.6821, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 023 | Train loss=0.5298, AUC=0.5772 | Val loss=0.6689, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 024 | Train loss=0.5554, AUC=0.6596 | Val loss=0.6688, AUC=0.5238
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 025 | Train loss=0.5404, AUC=0.6404 | Val loss=0.6679, AUC=0.5238
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 026 | Train loss=0.5245, AUC=0.6833 | Val loss=0.6759, AUC=0.5238
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 027 | Train loss=0.5821, AUC=0.6886 | Val loss=0.6890, AUC=0.5476
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 028 | Train loss=0.5976, AUC=0.6105 | Val loss=0.6852, AUC=0.5238
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 029 | Train loss=0.5400, AUC=0.7789 | Val loss=0.6702, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 030 | Train loss=0.5609, AUC=0.7123 | Val loss=0.6652, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 031 | Train loss=0.4945, AUC=0.7219 | Val loss=0.6658, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 032 | Train loss=0.5725, AUC=0.6193 | Val loss=0.6761, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 033 | Train loss=0.5745, AUC=0.6404 | Val loss=0.6862, AUC=0.5238
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 034 | Train loss=0.5497, AUC=0.6956 | Val loss=0.6782, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 035 | Train loss=0.5196, AUC=0.7789 | Val loss=0.6665, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 036 | Train loss=0.5083, AUC=0.7781 | Val loss=0.6658, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 037 | Train loss=0.5882, AUC=0.6719 | Val loss=0.6801, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 038 | Train loss=0.5547, AUC=0.7114 | Val loss=0.6754, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 039 | Train loss=0.5718, AUC=0.7158 | Val loss=0.6705, AUC=0.5476
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 040 | Train loss=0.5220, AUC=0.7535 | Val loss=0.6666, AUC=0.5357
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Loading best model (val AUC=0.5952)…
+2025-11-26 02:57:57 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Held-out r/worldnews: Test Loss=0.3828, Test ROC-AUC=0.9773
+2025-11-26 02:57:57 | INFO | microviral | [RESULT] CROSS-SUB GNN metrics: {'politics': {'train_auc': 0.86328125, 'val_auc': 0.8095238095238095, 'test_auc': 0.6256206554121152}, 'technology': {'train_auc': 0.7530241935483871, 'val_auc': 0.7142857142857143, 'test_auc': 0.75}, 'worldnews': {'train_auc': 0.7535087719298246, 'val_auc': 0.5952380952380953, 'test_auc': 0.9772727272727273}}
+2025-11-26 02:57:57 | INFO | microviral | 
+=== [GNN] FEATURE ABLATION STUDY ===
+2025-11-26 02:57:57 | INFO | microviral | [ABLATION] Running global GNN with feature_config='full'…
+2025-11-26 02:57:57 | INFO | microviral | [GLOBAL] Building dataset (feature_config='full')…
+2025-11-26 02:58:03 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='full').
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Dataset split: 86 train / 18 val / 19 test graphs.
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Using device: cuda
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 001 | Train loss=0.6441, AUC=0.4704 | Val loss=0.5317, AUC=0.3111
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 002 | Train loss=0.6228, AUC=0.3495 | Val loss=0.4891, AUC=0.3111
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 003 | Train loss=0.6336, AUC=0.2809 | Val loss=0.4862, AUC=0.3111
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 004 | Train loss=0.6330, AUC=0.2581 | Val loss=0.4978, AUC=0.3111
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 005 | Train loss=0.6290, AUC=0.2802 | Val loss=0.5136, AUC=0.3556
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 006 | Train loss=0.6223, AUC=0.3239 | Val loss=0.5339, AUC=0.4000
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 007 | Train loss=0.6118, AUC=0.3743 | Val loss=0.5416, AUC=0.4667
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 008 | Train loss=0.6007, AUC=0.4099 | Val loss=0.5438, AUC=0.5556
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 009 | Train loss=0.6106, AUC=0.4422 | Val loss=0.5204, AUC=0.5556
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 010 | Train loss=0.6046, AUC=0.4603 | Val loss=0.5021, AUC=0.5556
+2025-11-26 02:58:03 | INFO | microviral | [GLOBAL_full] Epoch 011 | Train loss=0.5796, AUC=0.5410 | Val loss=0.4992, AUC=0.5778
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 012 | Train loss=0.5806, AUC=0.6082 | Val loss=0.4902, AUC=0.5778
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 013 | Train loss=0.5651, AUC=0.6996 | Val loss=0.4877, AUC=0.5556
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 014 | Train loss=0.5841, AUC=0.6270 | Val loss=0.4829, AUC=0.5556
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 015 | Train loss=0.5730, AUC=0.8118 | Val loss=0.4851, AUC=0.6222
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 016 | Train loss=0.5711, AUC=0.7171 | Val loss=0.4978, AUC=0.6222
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 017 | Train loss=0.5692, AUC=0.7419 | Val loss=0.5045, AUC=0.6222
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 018 | Train loss=0.5847, AUC=0.7083 | Val loss=0.4972, AUC=0.6222
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 019 | Train loss=0.5693, AUC=0.6673 | Val loss=0.5095, AUC=0.6444
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 020 | Train loss=0.5684, AUC=0.7278 | Val loss=0.5029, AUC=0.6444
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 021 | Train loss=0.5399, AUC=0.7648 | Val loss=0.4986, AUC=0.6444
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 022 | Train loss=0.5544, AUC=0.7177 | Val loss=0.4753, AUC=0.6444
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 023 | Train loss=0.5580, AUC=0.7258 | Val loss=0.4620, AUC=0.6444
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 024 | Train loss=0.5570, AUC=0.7077 | Val loss=0.4733, AUC=0.6444
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 025 | Train loss=0.5494, AUC=0.7460 | Val loss=0.4927, AUC=0.6222
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 026 | Train loss=0.5350, AUC=0.7601 | Val loss=0.5254, AUC=0.6889
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 027 | Train loss=0.5364, AUC=0.7366 | Val loss=0.5284, AUC=0.6889
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 028 | Train loss=0.5248, AUC=0.7540 | Val loss=0.4858, AUC=0.6444
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 029 | Train loss=0.5450, AUC=0.7339 | Val loss=0.4536, AUC=0.6667
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 030 | Train loss=0.5441, AUC=0.7513 | Val loss=0.4631, AUC=0.6667
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 031 | Train loss=0.5298, AUC=0.7540 | Val loss=0.4842, AUC=0.6667
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 032 | Train loss=0.5284, AUC=0.7493 | Val loss=0.5196, AUC=0.6667
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 033 | Train loss=0.5213, AUC=0.7601 | Val loss=0.4998, AUC=0.6889
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 034 | Train loss=0.5151, AUC=0.7473 | Val loss=0.4691, AUC=0.6889
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 035 | Train loss=0.5003, AUC=0.7863 | Val loss=0.4587, AUC=0.6889
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 036 | Train loss=0.5116, AUC=0.7776 | Val loss=0.4746, AUC=0.7111
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 037 | Train loss=0.5057, AUC=0.7715 | Val loss=0.4562, AUC=0.6889
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 038 | Train loss=0.5103, AUC=0.7601 | Val loss=0.4666, AUC=0.7111
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 039 | Train loss=0.5068, AUC=0.7816 | Val loss=0.4799, AUC=0.7111
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Epoch 040 | Train loss=0.4958, AUC=0.8017 | Val loss=0.4855, AUC=0.7111
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Loading best model (val AUC=0.7111)…
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL_full] Final Test Loss=0.5337, Test ROC-AUC=0.5667
+2025-11-26 02:58:04 | INFO | microviral | [ABLATION] Running global GNN with feature_config='structure_only'…
+2025-11-26 02:58:04 | INFO | microviral | [GLOBAL] Building dataset (feature_config='structure_only')…
+2025-11-26 02:58:10 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='structure_only').
+2025-11-26 02:58:10 | INFO | microviral | [GLOBAL_structure_only] Dataset split: 86 train / 18 val / 19 test graphs.
+2025-11-26 02:58:10 | INFO | microviral | [GLOBAL_structure_only] Using device: cuda
+2025-11-26 02:58:10 | INFO | microviral | [GLOBAL_structure_only] Epoch 001 | Train loss=0.6680, AUC=0.4590 | Val loss=0.6068, AUC=0.4000
+2025-11-26 02:58:10 | INFO | microviral | [GLOBAL_structure_only] Epoch 002 | Train loss=0.6235, AUC=0.6109 | Val loss=0.5586, AUC=0.4444
+2025-11-26 02:58:10 | INFO | microviral | [GLOBAL_structure_only] Epoch 003 | Train loss=0.6233, AUC=0.3690 | Val loss=0.5197, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 004 | Train loss=0.5923, AUC=0.4751 | Val loss=0.4959, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 005 | Train loss=0.5983, AUC=0.4059 | Val loss=0.4795, AUC=0.4444
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 006 | Train loss=0.5935, AUC=0.4368 | Val loss=0.4729, AUC=0.4667
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 007 | Train loss=0.5874, AUC=0.4738 | Val loss=0.4707, AUC=0.4222
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 008 | Train loss=0.5950, AUC=0.5027 | Val loss=0.4708, AUC=0.4000
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 009 | Train loss=0.6021, AUC=0.5565 | Val loss=0.4728, AUC=0.4667
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 010 | Train loss=0.5984, AUC=0.5034 | Val loss=0.4766, AUC=0.4222
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 011 | Train loss=0.5887, AUC=0.4550 | Val loss=0.4831, AUC=0.4667
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 012 | Train loss=0.5873, AUC=0.4966 | Val loss=0.4888, AUC=0.4667
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 013 | Train loss=0.5913, AUC=0.4664 | Val loss=0.4913, AUC=0.4889
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 014 | Train loss=0.5859, AUC=0.5323 | Val loss=0.4934, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 015 | Train loss=0.5970, AUC=0.5007 | Val loss=0.4922, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 016 | Train loss=0.5892, AUC=0.4288 | Val loss=0.4913, AUC=0.4889
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 017 | Train loss=0.5916, AUC=0.5215 | Val loss=0.4895, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 018 | Train loss=0.5931, AUC=0.6203 | Val loss=0.4880, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 019 | Train loss=0.6010, AUC=0.4946 | Val loss=0.4870, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 020 | Train loss=0.5946, AUC=0.5477 | Val loss=0.4865, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 021 | Train loss=0.5902, AUC=0.5370 | Val loss=0.4869, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 022 | Train loss=0.5928, AUC=0.4899 | Val loss=0.4860, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 023 | Train loss=0.5761, AUC=0.3710 | Val loss=0.4885, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 024 | Train loss=0.5952, AUC=0.5390 | Val loss=0.4863, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 025 | Train loss=0.5956, AUC=0.5517 | Val loss=0.4852, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 026 | Train loss=0.5909, AUC=0.5423 | Val loss=0.4859, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 027 | Train loss=0.6037, AUC=0.4462 | Val loss=0.4847, AUC=0.5111
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 028 | Train loss=0.5942, AUC=0.5659 | Val loss=0.4874, AUC=0.5333
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 029 | Train loss=0.5812, AUC=0.5517 | Val loss=0.4899, AUC=0.5333
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 030 | Train loss=0.6002, AUC=0.5511 | Val loss=0.4885, AUC=0.5333
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 031 | Train loss=0.5882, AUC=0.5867 | Val loss=0.4896, AUC=0.5333
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 032 | Train loss=0.5892, AUC=0.5820 | Val loss=0.4898, AUC=0.5333
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 033 | Train loss=0.5981, AUC=0.5659 | Val loss=0.4883, AUC=0.5333
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 034 | Train loss=0.5827, AUC=0.6028 | Val loss=0.4878, AUC=0.5333
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 035 | Train loss=0.5922, AUC=0.5101 | Val loss=0.4877, AUC=0.5556
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 036 | Train loss=0.5952, AUC=0.5948 | Val loss=0.4862, AUC=0.5556
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 037 | Train loss=0.5852, AUC=0.5336 | Val loss=0.4871, AUC=0.5556
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 038 | Train loss=0.5908, AUC=0.5262 | Val loss=0.4877, AUC=0.5556
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 039 | Train loss=0.5901, AUC=0.5410 | Val loss=0.4869, AUC=0.5556
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Epoch 040 | Train loss=0.5754, AUC=0.5638 | Val loss=0.4872, AUC=0.5556
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Loading best model (val AUC=0.5556)…
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL_structure_only] Final Test Loss=0.5331, Test ROC-AUC=0.4000
+2025-11-26 02:58:11 | INFO | microviral | [ABLATION] Running global GNN with feature_config='structure_time'…
+2025-11-26 02:58:11 | INFO | microviral | [GLOBAL] Building dataset (feature_config='structure_time')…
+2025-11-26 02:58:18 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='structure_time').
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Dataset split: 86 train / 18 val / 19 test graphs.
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Using device: cuda
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 001 | Train loss=0.6909, AUC=0.5349 | Val loss=0.6486, AUC=0.5556
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 002 | Train loss=0.6511, AUC=0.4872 | Val loss=0.5854, AUC=0.5333
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 003 | Train loss=0.6311, AUC=0.4234 | Val loss=0.5378, AUC=0.5778
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 004 | Train loss=0.5943, AUC=0.5316 | Val loss=0.5063, AUC=0.5778
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 005 | Train loss=0.6010, AUC=0.3770 | Val loss=0.4834, AUC=0.6222
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 006 | Train loss=0.5846, AUC=0.4449 | Val loss=0.4715, AUC=0.6667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 007 | Train loss=0.5927, AUC=0.5074 | Val loss=0.4654, AUC=0.6889
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 008 | Train loss=0.5862, AUC=0.4395 | Val loss=0.4641, AUC=0.7333
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 009 | Train loss=0.5993, AUC=0.4960 | Val loss=0.4646, AUC=0.8444
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 010 | Train loss=0.5967, AUC=0.4247 | Val loss=0.4688, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 011 | Train loss=0.5912, AUC=0.5638 | Val loss=0.4731, AUC=0.8889
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 012 | Train loss=0.6126, AUC=0.4570 | Val loss=0.4763, AUC=0.9333
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 013 | Train loss=0.5896, AUC=0.4126 | Val loss=0.4835, AUC=0.9333
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 014 | Train loss=0.6044, AUC=0.5020 | Val loss=0.4858, AUC=0.9556
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 015 | Train loss=0.5924, AUC=0.4644 | Val loss=0.4904, AUC=0.9556
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 016 | Train loss=0.5808, AUC=0.6075 | Val loss=0.4932, AUC=0.9556
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 017 | Train loss=0.5881, AUC=0.4866 | Val loss=0.4922, AUC=0.9333
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 018 | Train loss=0.5914, AUC=0.5249 | Val loss=0.4890, AUC=0.9111
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 019 | Train loss=0.5818, AUC=0.5491 | Val loss=0.4852, AUC=0.8889
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 020 | Train loss=0.6080, AUC=0.5228 | Val loss=0.4801, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 021 | Train loss=0.5958, AUC=0.5108 | Val loss=0.4785, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 022 | Train loss=0.5851, AUC=0.5491 | Val loss=0.4791, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 023 | Train loss=0.6024, AUC=0.5820 | Val loss=0.4770, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 024 | Train loss=0.6047, AUC=0.4966 | Val loss=0.4772, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 025 | Train loss=0.6035, AUC=0.5558 | Val loss=0.4790, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 026 | Train loss=0.6002, AUC=0.5719 | Val loss=0.4808, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 027 | Train loss=0.5980, AUC=0.5228 | Val loss=0.4835, AUC=0.8889
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 028 | Train loss=0.5915, AUC=0.5759 | Val loss=0.4858, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 029 | Train loss=0.5772, AUC=0.5531 | Val loss=0.4862, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 030 | Train loss=0.5847, AUC=0.5625 | Val loss=0.4846, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 031 | Train loss=0.5901, AUC=0.5323 | Val loss=0.4813, AUC=0.8444
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 032 | Train loss=0.6038, AUC=0.5565 | Val loss=0.4767, AUC=0.8444
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 033 | Train loss=0.5893, AUC=0.5551 | Val loss=0.4767, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 034 | Train loss=0.5751, AUC=0.5524 | Val loss=0.4768, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 035 | Train loss=0.5840, AUC=0.5323 | Val loss=0.4743, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 036 | Train loss=0.5934, AUC=0.5726 | Val loss=0.4718, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 037 | Train loss=0.6004, AUC=0.5706 | Val loss=0.4696, AUC=0.8667
+2025-11-26 02:58:18 | INFO | microviral | [GLOBAL_structure_time] Epoch 038 | Train loss=0.5815, AUC=0.5988 | Val loss=0.4715, AUC=0.8667
+2025-11-26 02:58:19 | INFO | microviral | [GLOBAL_structure_time] Epoch 039 | Train loss=0.5803, AUC=0.6122 | Val loss=0.4727, AUC=0.8667
+2025-11-26 02:58:19 | INFO | microviral | [GLOBAL_structure_time] Epoch 040 | Train loss=0.5720, AUC=0.6257 | Val loss=0.4731, AUC=0.8667
+2025-11-26 02:58:19 | INFO | microviral | [GLOBAL_structure_time] Loading best model (val AUC=0.9556)…
+2025-11-26 02:58:19 | INFO | microviral | [GLOBAL_structure_time] Final Test Loss=0.5277, Test ROC-AUC=0.3833
+2025-11-26 02:58:19 | INFO | microviral | [RESULT] ABLATION GNN metrics: {'full': {'train_auc': 0.801747311827957, 'val_auc': 0.711111111111111, 'test_auc': 0.5666666666666667}, 'structure_only': {'train_auc': 0.5638440860215054, 'val_auc': 0.5555555555555556, 'test_auc': 0.4}, 'structure_time': {'train_auc': 0.6256720430107526, 'val_auc': 0.9555555555555556, 'test_auc': 0.3833333333333333}}
+2025-11-26 02:58:19 | INFO | microviral | === GNN PIPELINE COMPLETE ✅ ===
+2025-11-27 17:53:03 | INFO | microviral | === GNN PIPELINE START ===
+2025-11-27 17:53:03 | INFO | microviral | Loading cached cascades from data/nodes_multi.parquet…
+2025-11-27 17:53:03 | INFO | microviral | Loaded nodes_df with 188777 rows from data/nodes_multi.parquet
+2025-11-27 17:53:03 | INFO | microviral | Loaded 188777 nodes.
+2025-11-27 17:53:03 | INFO | microviral | Subreddits present: {'politics': 104455, 'technology': 43304, 'worldnews': 41018}
+2025-11-27 17:53:03 | INFO | microviral | Building user graph and detecting communities…
+2025-11-27 17:53:54 | INFO | microviral | Global user graph: 78321 nodes, 47008928 edges
+2025-11-27 17:53:54 | INFO | microviral | Running Louvain community detection…
+2025-11-27 18:02:47 | INFO | microviral | Detected 27 communities
+2025-11-27 18:02:47 | INFO | microviral | Building feature table…
+2025-11-27 18:03:05 | INFO | microviral | Feature table shape: (722, 9)
+2025-11-27 18:03:05 | INFO | microviral | Labeling cascades (global quantiles)…
+2025-11-27 18:03:05 | INFO | microviral | Label thresholds: micro >= 458.8, viral >= 1060.0
+2025-11-27 18:03:05 | INFO | microviral | Labeled cascades: 123
+2025-11-27 18:03:05 | INFO | microviral | Label distribution:
+label
+0    92
+1    31
+Name: count, dtype: int64
+2025-11-27 18:03:05 | INFO | microviral | 
+=== [GNN] GLOBAL MODEL (feature_config='full') ===
+2025-11-27 18:03:05 | INFO | microviral | [GLOBAL] Building dataset (feature_config='full')…
+2025-11-27 18:03:11 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='full').
+2025-11-27 18:03:11 | INFO | microviral | [GLOBAL_full] Dataset split: 86 train / 18 val / 19 test graphs.
+2025-11-27 18:03:11 | INFO | microviral | [GLOBAL_full] Using device: cuda
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 001 | Train loss=0.6073, AUC=0.4362 | Val loss=0.5332, AUC=0.3556
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 002 | Train loss=0.6198, AUC=0.3797 | Val loss=0.4991, AUC=0.3556
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 003 | Train loss=0.6233, AUC=0.3851 | Val loss=0.4902, AUC=0.4000
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 004 | Train loss=0.6197, AUC=0.3575 | Val loss=0.4976, AUC=0.3778
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 005 | Train loss=0.6143, AUC=0.3925 | Val loss=0.5084, AUC=0.5111
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 006 | Train loss=0.5990, AUC=0.4261 | Val loss=0.5254, AUC=0.5333
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 007 | Train loss=0.5958, AUC=0.5013 | Val loss=0.5362, AUC=0.5333
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 008 | Train loss=0.5905, AUC=0.6223 | Val loss=0.5310, AUC=0.5556
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 009 | Train loss=0.5804, AUC=0.6035 | Val loss=0.5197, AUC=0.6000
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 010 | Train loss=0.5859, AUC=0.6526 | Val loss=0.5004, AUC=0.5556
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 011 | Train loss=0.5990, AUC=0.6136 | Val loss=0.4940, AUC=0.6000
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 012 | Train loss=0.5803, AUC=0.7083 | Val loss=0.4982, AUC=0.6000
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 013 | Train loss=0.5803, AUC=0.7043 | Val loss=0.5022, AUC=0.6000
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 014 | Train loss=0.5786, AUC=0.7319 | Val loss=0.5113, AUC=0.6222
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 015 | Train loss=0.5668, AUC=0.7386 | Val loss=0.5226, AUC=0.6222
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 016 | Train loss=0.5624, AUC=0.7265 | Val loss=0.5262, AUC=0.6444
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 017 | Train loss=0.5634, AUC=0.6902 | Val loss=0.5173, AUC=0.6444
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 018 | Train loss=0.5702, AUC=0.6949 | Val loss=0.4933, AUC=0.6444
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 019 | Train loss=0.5655, AUC=0.7184 | Val loss=0.4900, AUC=0.6444
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 020 | Train loss=0.5460, AUC=0.7560 | Val loss=0.5006, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 021 | Train loss=0.5458, AUC=0.7191 | Val loss=0.5068, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 022 | Train loss=0.5308, AUC=0.7567 | Val loss=0.5189, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 023 | Train loss=0.5347, AUC=0.7298 | Val loss=0.5077, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 024 | Train loss=0.5392, AUC=0.7661 | Val loss=0.4942, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 025 | Train loss=0.5333, AUC=0.7305 | Val loss=0.5117, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 026 | Train loss=0.5476, AUC=0.7634 | Val loss=0.5010, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 027 | Train loss=0.5104, AUC=0.7802 | Val loss=0.5244, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 028 | Train loss=0.5383, AUC=0.7487 | Val loss=0.5386, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 029 | Train loss=0.5256, AUC=0.7534 | Val loss=0.5103, AUC=0.6889
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 030 | Train loss=0.5107, AUC=0.7809 | Val loss=0.4824, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 031 | Train loss=0.5765, AUC=0.7077 | Val loss=0.4601, AUC=0.6667
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 032 | Train loss=0.5177, AUC=0.7608 | Val loss=0.4950, AUC=0.6889
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 033 | Train loss=0.5331, AUC=0.7372 | Val loss=0.5197, AUC=0.6889
+2025-11-27 18:03:12 | INFO | microviral | [GLOBAL_full] Epoch 034 | Train loss=0.5232, AUC=0.7661 | Val loss=0.5001, AUC=0.6667
+2025-11-27 18:03:13 | INFO | microviral | [GLOBAL_full] Epoch 035 | Train loss=0.4885, AUC=0.7836 | Val loss=0.4814, AUC=0.6667
+2025-11-27 18:03:13 | INFO | microviral | [GLOBAL_full] Epoch 036 | Train loss=0.5110, AUC=0.7648 | Val loss=0.4535, AUC=0.6889
+2025-11-27 18:03:13 | INFO | microviral | [GLOBAL_full] Epoch 037 | Train loss=0.5038, AUC=0.7675 | Val loss=0.4791, AUC=0.7111
+2025-11-27 18:03:13 | INFO | microviral | [GLOBAL_full] Epoch 038 | Train loss=0.5259, AUC=0.7413 | Val loss=0.4792, AUC=0.7111
+2025-11-27 18:03:13 | INFO | microviral | [GLOBAL_full] Epoch 039 | Train loss=0.4964, AUC=0.7628 | Val loss=0.5223, AUC=0.7111
+2025-11-27 18:03:13 | INFO | microviral | [GLOBAL_full] Epoch 040 | Train loss=0.5034, AUC=0.7749 | Val loss=0.5043, AUC=0.7111
+2025-11-27 18:03:13 | INFO | microviral | [GLOBAL_full] Loading best model (val AUC=0.7111)…
+2025-11-27 18:03:13 | INFO | microviral | [GLOBAL_full] Final Test Loss=0.5303, Test ROC-AUC=0.5667
+2025-11-27 18:03:13 | INFO | microviral | [RESULT] GLOBAL GNN metrics: {'train_auc': 0.7748655913978495, 'val_auc': 0.7111111111111111, 'test_auc': 0.5666666666666667}
+2025-11-27 18:03:13 | INFO | microviral | 
+=== [GNN] PER-SUBREDDIT MODELS (feature_config='full') ===
+2025-11-27 18:03:13 | INFO | microviral | [PER-SUB] Building shared dataset (feature_config='full')…
+2025-11-27 18:03:19 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='full').
+2025-11-27 18:03:19 | INFO | microviral | [PER-SUB] Training GNN for r/politics on 72 cascades…
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Dataset split: 50 train / 10 val / 12 test graphs.
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Using device: cuda
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 001 | Train loss=0.9465, AUC=0.5775 | Val loss=0.7062, AUC=0.5600
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 002 | Train loss=0.7630, AUC=0.5500 | Val loss=0.6990, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 003 | Train loss=0.6074, AUC=0.6800 | Val loss=0.7389, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 004 | Train loss=0.5649, AUC=0.5650 | Val loss=0.8164, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 005 | Train loss=0.5554, AUC=0.3650 | Val loss=0.9150, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 006 | Train loss=0.5146, AUC=0.4650 | Val loss=1.0085, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 007 | Train loss=0.5162, AUC=0.3850 | Val loss=1.0819, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 008 | Train loss=0.4876, AUC=0.4200 | Val loss=1.1234, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 009 | Train loss=0.6025, AUC=0.3125 | Val loss=1.1381, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 010 | Train loss=0.5408, AUC=0.4400 | Val loss=1.1132, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 011 | Train loss=0.5460, AUC=0.4450 | Val loss=1.0703, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 012 | Train loss=0.5010, AUC=0.4075 | Val loss=1.0202, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 013 | Train loss=0.5019, AUC=0.3775 | Val loss=0.9761, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 014 | Train loss=0.5212, AUC=0.3925 | Val loss=0.9398, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 015 | Train loss=0.5209, AUC=0.3500 | Val loss=0.9090, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 016 | Train loss=0.5038, AUC=0.3900 | Val loss=0.8831, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 017 | Train loss=0.5291, AUC=0.4000 | Val loss=0.8662, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 018 | Train loss=0.5078, AUC=0.3550 | Val loss=0.8535, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 019 | Train loss=0.4951, AUC=0.3575 | Val loss=0.8477, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 020 | Train loss=0.5528, AUC=0.3850 | Val loss=0.8509, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 021 | Train loss=0.5372, AUC=0.5125 | Val loss=0.8532, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 022 | Train loss=0.4962, AUC=0.4975 | Val loss=0.8546, AUC=0.2400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 023 | Train loss=0.4729, AUC=0.3700 | Val loss=0.8592, AUC=0.2800
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 024 | Train loss=0.5240, AUC=0.3100 | Val loss=0.8707, AUC=0.2800
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 025 | Train loss=0.5326, AUC=0.4200 | Val loss=0.8807, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 026 | Train loss=0.5010, AUC=0.4075 | Val loss=0.8876, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 027 | Train loss=0.5511, AUC=0.4025 | Val loss=0.8945, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 028 | Train loss=0.5466, AUC=0.4500 | Val loss=0.8943, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 029 | Train loss=0.4725, AUC=0.3475 | Val loss=0.8875, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 030 | Train loss=0.5309, AUC=0.4100 | Val loss=0.8876, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 031 | Train loss=0.5068, AUC=0.4425 | Val loss=0.8842, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 032 | Train loss=0.4761, AUC=0.4700 | Val loss=0.8811, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 033 | Train loss=0.5257, AUC=0.6175 | Val loss=0.8830, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 034 | Train loss=0.5148, AUC=0.4050 | Val loss=0.8809, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 035 | Train loss=0.5043, AUC=0.5375 | Val loss=0.8787, AUC=0.3200
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 036 | Train loss=0.4881, AUC=0.5550 | Val loss=0.8771, AUC=0.3600
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 037 | Train loss=0.4951, AUC=0.4625 | Val loss=0.8783, AUC=0.3600
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 038 | Train loss=0.4969, AUC=0.4950 | Val loss=0.8802, AUC=0.4000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 039 | Train loss=0.4920, AUC=0.4725 | Val loss=0.8825, AUC=0.4400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Epoch 040 | Train loss=0.4698, AUC=0.6400 | Val loss=0.8854, AUC=0.4400
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Loading best model (val AUC=0.5600)…
+2025-11-27 18:03:19 | INFO | microviral | [SUB_politics_full] Final Test Loss=0.6746, Test ROC-AUC=0.5000
+2025-11-27 18:03:19 | INFO | microviral | [PER-SUB] Training GNN for r/technology on 25 cascades…
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Dataset split: 17 train / 3 val / 5 test graphs.
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Using device: cuda
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 001 | Train loss=0.6461, AUC=0.4423 | Val loss=0.7782, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 002 | Train loss=0.6201, AUC=0.4038 | Val loss=0.8419, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 003 | Train loss=0.6083, AUC=0.1923 | Val loss=0.9124, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 004 | Train loss=0.5635, AUC=0.6346 | Val loss=0.9856, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 005 | Train loss=0.5556, AUC=0.5192 | Val loss=1.0588, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 006 | Train loss=0.5597, AUC=0.4231 | Val loss=1.1290, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 007 | Train loss=0.5591, AUC=0.4038 | Val loss=1.1912, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 008 | Train loss=0.5537, AUC=0.4615 | Val loss=1.2446, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 009 | Train loss=0.5567, AUC=0.4423 | Val loss=1.2849, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 010 | Train loss=0.5718, AUC=0.3462 | Val loss=1.3119, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 011 | Train loss=0.5613, AUC=0.4615 | Val loss=1.3251, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 012 | Train loss=0.5603, AUC=0.4808 | Val loss=1.3281, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 013 | Train loss=0.5772, AUC=0.3654 | Val loss=1.3200, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 014 | Train loss=0.5654, AUC=0.4615 | Val loss=1.3032, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 015 | Train loss=0.5704, AUC=0.3269 | Val loss=1.2811, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 016 | Train loss=0.5522, AUC=0.5769 | Val loss=1.2544, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 017 | Train loss=0.5716, AUC=0.3462 | Val loss=1.2251, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 018 | Train loss=0.5541, AUC=0.4808 | Val loss=1.1956, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 019 | Train loss=0.5491, AUC=0.5000 | Val loss=1.1665, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 020 | Train loss=0.5531, AUC=0.4231 | Val loss=1.1385, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 021 | Train loss=0.5547, AUC=0.3846 | Val loss=1.1130, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 022 | Train loss=0.5564, AUC=0.3654 | Val loss=1.0901, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 023 | Train loss=0.5407, AUC=0.5385 | Val loss=1.0714, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 024 | Train loss=0.5515, AUC=0.4615 | Val loss=1.0568, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 025 | Train loss=0.5581, AUC=0.4038 | Val loss=1.0455, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 026 | Train loss=0.5459, AUC=0.5577 | Val loss=1.0375, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 027 | Train loss=0.5487, AUC=0.4615 | Val loss=1.0332, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 028 | Train loss=0.5529, AUC=0.4615 | Val loss=1.0319, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 029 | Train loss=0.5464, AUC=0.5385 | Val loss=1.0335, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 030 | Train loss=0.5508, AUC=0.4808 | Val loss=1.0394, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 031 | Train loss=0.5439, AUC=0.5769 | Val loss=1.0474, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 032 | Train loss=0.5427, AUC=0.5385 | Val loss=1.0577, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 033 | Train loss=0.5520, AUC=0.4423 | Val loss=1.0689, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 034 | Train loss=0.5408, AUC=0.5962 | Val loss=1.0817, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 035 | Train loss=0.5375, AUC=0.6538 | Val loss=1.0945, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 036 | Train loss=0.5462, AUC=0.5192 | Val loss=1.1066, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 037 | Train loss=0.5484, AUC=0.4808 | Val loss=1.1170, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 038 | Train loss=0.5522, AUC=0.4615 | Val loss=1.1258, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 039 | Train loss=0.5555, AUC=0.3654 | Val loss=1.1332, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Epoch 040 | Train loss=0.5459, AUC=0.5385 | Val loss=1.1383, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Loading best model (val AUC=0.0000)…
+2025-11-27 18:03:19 | INFO | microviral | [SUB_technology_full] Final Test Loss=0.8180, Test ROC-AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [PER-SUB] Training GNN for r/worldnews on 26 cascades…
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Dataset split: 18 train / 3 val / 5 test graphs.
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Using device: cuda
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Epoch 001 | Train loss=0.7294, AUC=0.6222 | Val loss=0.6871, AUC=1.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Epoch 002 | Train loss=0.6720, AUC=0.4667 | Val loss=0.6794, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Epoch 003 | Train loss=0.6331, AUC=0.0889 | Val loss=0.6820, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Epoch 004 | Train loss=0.5952, AUC=0.0667 | Val loss=0.6957, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Epoch 005 | Train loss=0.5434, AUC=0.3556 | Val loss=0.7191, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Epoch 006 | Train loss=0.5429, AUC=0.0444 | Val loss=0.7512, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Epoch 007 | Train loss=0.5129, AUC=0.0667 | Val loss=0.7896, AUC=0.0000
+2025-11-27 18:03:19 | INFO | microviral | [SUB_worldnews_full] Epoch 008 | Train loss=0.5016, AUC=0.1778 | Val loss=0.8305, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 009 | Train loss=0.5000, AUC=0.0889 | Val loss=0.8703, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 010 | Train loss=0.5092, AUC=0.1111 | Val loss=0.9057, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 011 | Train loss=0.5174, AUC=0.0222 | Val loss=0.9325, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 012 | Train loss=0.5170, AUC=0.1111 | Val loss=0.9507, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 013 | Train loss=0.5041, AUC=0.1778 | Val loss=0.9593, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 014 | Train loss=0.5260, AUC=0.0444 | Val loss=0.9587, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 015 | Train loss=0.5229, AUC=0.1111 | Val loss=0.9497, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 016 | Train loss=0.5157, AUC=0.0222 | Val loss=0.9348, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 017 | Train loss=0.5165, AUC=0.1111 | Val loss=0.9146, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 018 | Train loss=0.5174, AUC=0.1111 | Val loss=0.8908, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 019 | Train loss=0.5064, AUC=0.1111 | Val loss=0.8648, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 020 | Train loss=0.4977, AUC=0.1111 | Val loss=0.8374, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 021 | Train loss=0.4691, AUC=0.3556 | Val loss=0.8112, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 022 | Train loss=0.4859, AUC=0.1556 | Val loss=0.7856, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 023 | Train loss=0.4912, AUC=0.1111 | Val loss=0.7620, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 024 | Train loss=0.4860, AUC=0.1333 | Val loss=0.7400, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 025 | Train loss=0.4803, AUC=0.1778 | Val loss=0.7198, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 026 | Train loss=0.4729, AUC=0.2667 | Val loss=0.7018, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 027 | Train loss=0.4740, AUC=0.1111 | Val loss=0.6864, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 028 | Train loss=0.4698, AUC=0.2889 | Val loss=0.6739, AUC=0.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 029 | Train loss=0.4793, AUC=0.0889 | Val loss=0.6631, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 030 | Train loss=0.4652, AUC=0.3333 | Val loss=0.6536, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 031 | Train loss=0.4590, AUC=0.6222 | Val loss=0.6457, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 032 | Train loss=0.4653, AUC=0.4444 | Val loss=0.6391, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 033 | Train loss=0.4615, AUC=0.4889 | Val loss=0.6337, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 034 | Train loss=0.4608, AUC=0.4889 | Val loss=0.6289, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 035 | Train loss=0.4550, AUC=0.6000 | Val loss=0.6250, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 036 | Train loss=0.4642, AUC=0.2444 | Val loss=0.6217, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 037 | Train loss=0.4549, AUC=0.4000 | Val loss=0.6187, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 038 | Train loss=0.4509, AUC=0.4444 | Val loss=0.6160, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 039 | Train loss=0.4544, AUC=0.4444 | Val loss=0.6128, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Epoch 040 | Train loss=0.4424, AUC=0.6889 | Val loss=0.6096, AUC=1.0000
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Loading best model (val AUC=1.0000)…
+2025-11-27 18:03:20 | INFO | microviral | [SUB_worldnews_full] Final Test Loss=0.2104, Test ROC-AUC=nan
+2025-11-27 18:03:20 | INFO | microviral | [RESULT] PER-SUBREDDIT GNN metrics: {'politics': {'train_auc': 0.6400000000000001, 'val_auc': 0.56, 'test_auc': 0.5}, 'technology': {'train_auc': 0.5384615384615384, 'val_auc': 0.0, 'test_auc': 0.0}, 'worldnews': {'train_auc': 0.6888888888888889, 'val_auc': 1.0, 'test_auc': nan}}
+2025-11-27 18:03:20 | INFO | microviral | 
+=== [GNN] CROSS-SUBREDDIT GENERALIZATION (feature_config='full') ===
+2025-11-27 18:03:20 | INFO | microviral | [X-SUB] Building shared dataset (feature_config='full')…
+2025-11-27 18:03:26 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='full').
+2025-11-27 18:03:26 | INFO | microviral | [X-SUB] Held-out r/politics: 51 train/val, 72 test cascades.
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Using device: cuda
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 001 | Train loss=0.6008, AUC=0.6641 | Val loss=0.6381, AUC=0.2857
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 002 | Train loss=0.5836, AUC=0.3008 | Val loss=0.6343, AUC=0.2381
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 003 | Train loss=0.5531, AUC=0.2383 | Val loss=0.6460, AUC=0.2381
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 004 | Train loss=0.6268, AUC=0.1172 | Val loss=0.6600, AUC=0.2381
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 005 | Train loss=0.6188, AUC=0.2305 | Val loss=0.6638, AUC=0.2381
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 006 | Train loss=0.5955, AUC=0.1133 | Val loss=0.6594, AUC=0.2381
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 007 | Train loss=0.5796, AUC=0.1641 | Val loss=0.6517, AUC=0.2857
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 008 | Train loss=0.4310, AUC=0.2969 | Val loss=0.6458, AUC=0.2857
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 009 | Train loss=0.5747, AUC=0.1406 | Val loss=0.6432, AUC=0.2857
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 010 | Train loss=0.6058, AUC=0.2930 | Val loss=0.6389, AUC=0.2857
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 011 | Train loss=0.6118, AUC=0.1484 | Val loss=0.6325, AUC=0.2857
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 012 | Train loss=0.5417, AUC=0.3359 | Val loss=0.6264, AUC=0.2857
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 013 | Train loss=0.5508, AUC=0.2539 | Val loss=0.6218, AUC=0.3333
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 014 | Train loss=0.4894, AUC=0.3281 | Val loss=0.6186, AUC=0.3333
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 015 | Train loss=0.4568, AUC=0.2031 | Val loss=0.6176, AUC=0.4762
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 016 | Train loss=0.4804, AUC=0.3672 | Val loss=0.6193, AUC=0.4762
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 017 | Train loss=0.5274, AUC=0.4688 | Val loss=0.6222, AUC=0.5238
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 018 | Train loss=0.5251, AUC=0.4492 | Val loss=0.6238, AUC=0.5238
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 019 | Train loss=0.4099, AUC=0.4961 | Val loss=0.6261, AUC=0.5714
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 020 | Train loss=0.4674, AUC=0.4648 | Val loss=0.6310, AUC=0.5714
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 021 | Train loss=0.5257, AUC=0.4492 | Val loss=0.6331, AUC=0.5714
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 022 | Train loss=0.5358, AUC=0.3945 | Val loss=0.6295, AUC=0.5714
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 023 | Train loss=0.5886, AUC=0.5977 | Val loss=0.6191, AUC=0.5238
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 024 | Train loss=0.5276, AUC=0.4102 | Val loss=0.6051, AUC=0.5714
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 025 | Train loss=0.5097, AUC=0.6016 | Val loss=0.5938, AUC=0.6190
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 026 | Train loss=0.6015, AUC=0.8320 | Val loss=0.5859, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 027 | Train loss=0.4330, AUC=0.7070 | Val loss=0.5815, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 028 | Train loss=0.5337, AUC=0.8281 | Val loss=0.5792, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 029 | Train loss=0.4957, AUC=0.8047 | Val loss=0.5768, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 030 | Train loss=0.4601, AUC=0.7656 | Val loss=0.5750, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 031 | Train loss=0.4777, AUC=0.8203 | Val loss=0.5749, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 032 | Train loss=0.5212, AUC=0.6914 | Val loss=0.5767, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 033 | Train loss=0.4046, AUC=0.8633 | Val loss=0.5798, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 034 | Train loss=0.3862, AUC=0.6992 | Val loss=0.5865, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 035 | Train loss=0.4189, AUC=0.8008 | Val loss=0.5981, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 036 | Train loss=0.3504, AUC=0.8242 | Val loss=0.6103, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 037 | Train loss=0.3929, AUC=0.8750 | Val loss=0.6207, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 038 | Train loss=0.5451, AUC=0.6914 | Val loss=0.6132, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 039 | Train loss=0.3963, AUC=0.8359 | Val loss=0.5904, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Epoch 040 | Train loss=0.5231, AUC=0.7812 | Val loss=0.5693, AUC=0.7143
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Loading best model (val AUC=0.7143)…
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_politics_full] Held-out r/politics: Test Loss=0.5966, Test ROC-AUC=0.6137
+2025-11-27 18:03:26 | INFO | microviral | [X-SUB] Held-out r/technology: 98 train/val, 25 test cascades.
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Using device: cuda
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 001 | Train loss=0.6091, AUC=0.5494 | Val loss=0.6773, AUC=0.3214
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 002 | Train loss=0.5598, AUC=0.3468 | Val loss=0.7354, AUC=0.3095
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 003 | Train loss=0.6164, AUC=0.2782 | Val loss=0.7829, AUC=0.3095
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 004 | Train loss=0.5836, AUC=0.2681 | Val loss=0.7820, AUC=0.3095
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 005 | Train loss=0.5186, AUC=0.2964 | Val loss=0.7653, AUC=0.2976
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 006 | Train loss=0.5321, AUC=0.3075 | Val loss=0.7448, AUC=0.3095
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 007 | Train loss=0.5783, AUC=0.3226 | Val loss=0.7265, AUC=0.3095
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 008 | Train loss=0.5392, AUC=0.3649 | Val loss=0.7055, AUC=0.2857
+2025-11-27 18:03:26 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 009 | Train loss=0.5355, AUC=0.4304 | Val loss=0.6928, AUC=0.2976
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 010 | Train loss=0.5563, AUC=0.3256 | Val loss=0.6856, AUC=0.3214
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 011 | Train loss=0.5394, AUC=0.4355 | Val loss=0.6817, AUC=0.4048
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 012 | Train loss=0.4936, AUC=0.4899 | Val loss=0.6815, AUC=0.4881
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 013 | Train loss=0.5306, AUC=0.5091 | Val loss=0.6891, AUC=0.5119
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 014 | Train loss=0.5082, AUC=0.5685 | Val loss=0.6992, AUC=0.5238
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 015 | Train loss=0.4934, AUC=0.5948 | Val loss=0.7106, AUC=0.5357
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 016 | Train loss=0.5606, AUC=0.5635 | Val loss=0.7210, AUC=0.5595
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 017 | Train loss=0.5269, AUC=0.5444 | Val loss=0.7084, AUC=0.5476
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 018 | Train loss=0.4811, AUC=0.6643 | Val loss=0.6941, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 019 | Train loss=0.5167, AUC=0.6169 | Val loss=0.6854, AUC=0.7024
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 020 | Train loss=0.4955, AUC=0.7258 | Val loss=0.6748, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 021 | Train loss=0.4725, AUC=0.6280 | Val loss=0.6686, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 022 | Train loss=0.4579, AUC=0.7571 | Val loss=0.6753, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 023 | Train loss=0.4934, AUC=0.6835 | Val loss=0.6905, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 024 | Train loss=0.5193, AUC=0.6573 | Val loss=0.6983, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 025 | Train loss=0.5097, AUC=0.7389 | Val loss=0.6916, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 026 | Train loss=0.4386, AUC=0.7692 | Val loss=0.6760, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 027 | Train loss=0.4763, AUC=0.7641 | Val loss=0.6666, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 028 | Train loss=0.4565, AUC=0.7379 | Val loss=0.6569, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 029 | Train loss=0.4824, AUC=0.7238 | Val loss=0.6562, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 030 | Train loss=0.4740, AUC=0.7843 | Val loss=0.6596, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 031 | Train loss=0.4522, AUC=0.7601 | Val loss=0.6650, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 032 | Train loss=0.4655, AUC=0.7702 | Val loss=0.6753, AUC=0.7024
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 033 | Train loss=0.4476, AUC=0.7631 | Val loss=0.6684, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 034 | Train loss=0.4606, AUC=0.7157 | Val loss=0.6667, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 035 | Train loss=0.4566, AUC=0.7399 | Val loss=0.6690, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 036 | Train loss=0.4509, AUC=0.7681 | Val loss=0.6722, AUC=0.6905
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 037 | Train loss=0.4617, AUC=0.7530 | Val loss=0.6652, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 038 | Train loss=0.4471, AUC=0.7520 | Val loss=0.6503, AUC=0.6786
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 039 | Train loss=0.4366, AUC=0.7681 | Val loss=0.6480, AUC=0.6667
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Epoch 040 | Train loss=0.4443, AUC=0.7601 | Val loss=0.6629, AUC=0.6548
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Loading best model (val AUC=0.7024)…
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_technology_full] Held-out r/technology: Test Loss=0.5897, Test ROC-AUC=0.7500
+2025-11-27 18:03:27 | INFO | microviral | [X-SUB] Held-out r/worldnews: 97 train/val, 26 test cascades.
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Using device: cuda
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 001 | Train loss=0.6440, AUC=0.5737 | Val loss=0.6635, AUC=0.4643
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 002 | Train loss=0.6465, AUC=0.3482 | Val loss=0.7122, AUC=0.4524
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 003 | Train loss=0.5269, AUC=0.4096 | Val loss=0.7160, AUC=0.4524
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 004 | Train loss=0.5519, AUC=0.3684 | Val loss=0.7219, AUC=0.4524
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 005 | Train loss=0.6402, AUC=0.3070 | Val loss=0.7210, AUC=0.4524
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 006 | Train loss=0.5365, AUC=0.4693 | Val loss=0.7023, AUC=0.4524
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 007 | Train loss=0.5839, AUC=0.4965 | Val loss=0.6922, AUC=0.4405
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 008 | Train loss=0.5807, AUC=0.4289 | Val loss=0.6799, AUC=0.4643
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 009 | Train loss=0.6113, AUC=0.4623 | Val loss=0.6714, AUC=0.4762
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 010 | Train loss=0.5435, AUC=0.5088 | Val loss=0.6663, AUC=0.5476
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 011 | Train loss=0.5712, AUC=0.4798 | Val loss=0.6696, AUC=0.5476
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 012 | Train loss=0.5845, AUC=0.5386 | Val loss=0.6751, AUC=0.5476
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 013 | Train loss=0.5761, AUC=0.5886 | Val loss=0.6791, AUC=0.5595
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 014 | Train loss=0.6314, AUC=0.5535 | Val loss=0.6821, AUC=0.5595
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 015 | Train loss=0.5766, AUC=0.4149 | Val loss=0.6725, AUC=0.6071
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 016 | Train loss=0.5428, AUC=0.5421 | Val loss=0.6705, AUC=0.5476
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 017 | Train loss=0.5618, AUC=0.5439 | Val loss=0.6744, AUC=0.5357
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 018 | Train loss=0.5271, AUC=0.6746 | Val loss=0.6806, AUC=0.5595
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 019 | Train loss=0.5746, AUC=0.6474 | Val loss=0.6891, AUC=0.5595
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 020 | Train loss=0.5633, AUC=0.6342 | Val loss=0.6902, AUC=0.5119
+2025-11-27 18:03:27 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 021 | Train loss=0.5249, AUC=0.5974 | Val loss=0.6874, AUC=0.5238
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 022 | Train loss=0.6024, AUC=0.5614 | Val loss=0.6873, AUC=0.5357
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 023 | Train loss=0.5747, AUC=0.6237 | Val loss=0.6791, AUC=0.5238
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 024 | Train loss=0.5521, AUC=0.6886 | Val loss=0.6690, AUC=0.5357
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 025 | Train loss=0.5724, AUC=0.7596 | Val loss=0.6652, AUC=0.5119
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 026 | Train loss=0.5438, AUC=0.6658 | Val loss=0.6641, AUC=0.5119
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 027 | Train loss=0.5435, AUC=0.7412 | Val loss=0.6718, AUC=0.5119
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 028 | Train loss=0.5197, AUC=0.6991 | Val loss=0.6871, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 029 | Train loss=0.5722, AUC=0.6351 | Val loss=0.7016, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 030 | Train loss=0.5226, AUC=0.7579 | Val loss=0.6996, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 031 | Train loss=0.5212, AUC=0.7535 | Val loss=0.6962, AUC=0.5357
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 032 | Train loss=0.5333, AUC=0.6588 | Val loss=0.6887, AUC=0.5119
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 033 | Train loss=0.5660, AUC=0.6798 | Val loss=0.6795, AUC=0.5357
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 034 | Train loss=0.5765, AUC=0.7316 | Val loss=0.6705, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 035 | Train loss=0.5286, AUC=0.8211 | Val loss=0.6626, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 036 | Train loss=0.5448, AUC=0.7325 | Val loss=0.6650, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 037 | Train loss=0.5217, AUC=0.7561 | Val loss=0.6751, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 038 | Train loss=0.5722, AUC=0.6816 | Val loss=0.6906, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 039 | Train loss=0.5343, AUC=0.7579 | Val loss=0.6866, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Epoch 040 | Train loss=0.5094, AUC=0.7640 | Val loss=0.6811, AUC=0.5476
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Loading best model (val AUC=0.6071)…
+2025-11-27 18:03:28 | INFO | microviral | [X_SUB_HELDOUT_worldnews_full] Held-out r/worldnews: Test Loss=0.3943, Test ROC-AUC=0.9545
+2025-11-27 18:03:28 | INFO | microviral | [RESULT] CROSS-SUB GNN metrics: {'politics': {'train_auc': 0.78125, 'val_auc': 0.7142857142857143, 'test_auc': 0.6137040714995035}, 'technology': {'train_auc': 0.7600806451612903, 'val_auc': 0.7023809523809523, 'test_auc': 0.75}, 'worldnews': {'train_auc': 0.7640350877192983, 'val_auc': 0.6071428571428571, 'test_auc': 0.9545454545454545}}
+2025-11-27 18:03:28 | INFO | microviral | 
+=== [GNN] FEATURE ABLATION STUDY ===
+2025-11-27 18:03:28 | INFO | microviral | [ABLATION] Running global GNN with feature_config='full'…
+2025-11-27 18:03:28 | INFO | microviral | [GLOBAL] Building dataset (feature_config='full')…
+2025-11-27 18:03:34 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='full').
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Dataset split: 86 train / 18 val / 19 test graphs.
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Using device: cuda
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 001 | Train loss=0.6957, AUC=0.4913 | Val loss=0.6092, AUC=0.3111
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 002 | Train loss=0.6288, AUC=0.4355 | Val loss=0.5398, AUC=0.3111
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 003 | Train loss=0.6149, AUC=0.3595 | Val loss=0.5011, AUC=0.3111
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 004 | Train loss=0.6228, AUC=0.2917 | Val loss=0.4867, AUC=0.3111
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 005 | Train loss=0.6166, AUC=0.2742 | Val loss=0.4841, AUC=0.3111
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 006 | Train loss=0.6153, AUC=0.2554 | Val loss=0.4878, AUC=0.3111
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 007 | Train loss=0.6209, AUC=0.2937 | Val loss=0.4910, AUC=0.3111
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 008 | Train loss=0.6020, AUC=0.3219 | Val loss=0.4997, AUC=0.3778
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 009 | Train loss=0.6233, AUC=0.3535 | Val loss=0.5033, AUC=0.3778
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 010 | Train loss=0.6047, AUC=0.3367 | Val loss=0.5139, AUC=0.4222
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 011 | Train loss=0.6115, AUC=0.3569 | Val loss=0.5180, AUC=0.5556
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 012 | Train loss=0.5961, AUC=0.4711 | Val loss=0.5206, AUC=0.5778
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 013 | Train loss=0.5965, AUC=0.5565 | Val loss=0.5195, AUC=0.6222
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 014 | Train loss=0.6092, AUC=0.5578 | Val loss=0.5100, AUC=0.6222
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 015 | Train loss=0.5957, AUC=0.6317 | Val loss=0.5045, AUC=0.5778
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 016 | Train loss=0.5847, AUC=0.6841 | Val loss=0.5012, AUC=0.6667
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 017 | Train loss=0.5851, AUC=0.6653 | Val loss=0.4959, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 018 | Train loss=0.5755, AUC=0.7218 | Val loss=0.4919, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 019 | Train loss=0.5618, AUC=0.7258 | Val loss=0.4912, AUC=0.6667
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 020 | Train loss=0.5600, AUC=0.7379 | Val loss=0.4893, AUC=0.6444
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 021 | Train loss=0.5791, AUC=0.7688 | Val loss=0.4786, AUC=0.6444
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 022 | Train loss=0.5552, AUC=0.6976 | Val loss=0.4858, AUC=0.6667
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 023 | Train loss=0.5601, AUC=0.7413 | Val loss=0.4826, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 024 | Train loss=0.5481, AUC=0.7453 | Val loss=0.4830, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 025 | Train loss=0.5514, AUC=0.7325 | Val loss=0.4773, AUC=0.6667
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 026 | Train loss=0.5395, AUC=0.7554 | Val loss=0.4699, AUC=0.6667
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 027 | Train loss=0.5581, AUC=0.7130 | Val loss=0.4713, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 028 | Train loss=0.5381, AUC=0.7534 | Val loss=0.4733, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 029 | Train loss=0.5372, AUC=0.7312 | Val loss=0.4801, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 030 | Train loss=0.5273, AUC=0.7534 | Val loss=0.4873, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 031 | Train loss=0.5261, AUC=0.7285 | Val loss=0.4797, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 032 | Train loss=0.5240, AUC=0.7776 | Val loss=0.4647, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 033 | Train loss=0.5325, AUC=0.7849 | Val loss=0.4637, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 034 | Train loss=0.5316, AUC=0.7379 | Val loss=0.4783, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 035 | Train loss=0.5210, AUC=0.7554 | Val loss=0.4859, AUC=0.6889
+2025-11-27 18:03:34 | INFO | microviral | [GLOBAL_full] Epoch 036 | Train loss=0.5333, AUC=0.7507 | Val loss=0.4887, AUC=0.6889
+2025-11-27 18:03:35 | INFO | microviral | [GLOBAL_full] Epoch 037 | Train loss=0.5049, AUC=0.7601 | Val loss=0.4826, AUC=0.6889
+2025-11-27 18:03:35 | INFO | microviral | [GLOBAL_full] Epoch 038 | Train loss=0.5169, AUC=0.7789 | Val loss=0.4518, AUC=0.7111
+2025-11-27 18:03:35 | INFO | microviral | [GLOBAL_full] Epoch 039 | Train loss=0.5081, AUC=0.7628 | Val loss=0.4378, AUC=0.7333
+2025-11-27 18:03:35 | INFO | microviral | [GLOBAL_full] Epoch 040 | Train loss=0.5094, AUC=0.7621 | Val loss=0.4425, AUC=0.7333
+2025-11-27 18:03:35 | INFO | microviral | [GLOBAL_full] Loading best model (val AUC=0.7333)…
+2025-11-27 18:03:35 | INFO | microviral | [GLOBAL_full] Final Test Loss=0.5265, Test ROC-AUC=0.5333
+2025-11-27 18:03:35 | INFO | microviral | [ABLATION] Running global GNN with feature_config='structure_only'…
+2025-11-27 18:03:35 | INFO | microviral | [GLOBAL] Building dataset (feature_config='structure_only')…
+2025-11-27 18:03:41 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='structure_only').
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Dataset split: 86 train / 18 val / 19 test graphs.
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Using device: cuda
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 001 | Train loss=0.6999, AUC=0.4476 | Val loss=0.6630, AUC=0.4667
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 002 | Train loss=0.6659, AUC=0.4677 | Val loss=0.6207, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 003 | Train loss=0.6481, AUC=0.3387 | Val loss=0.5835, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 004 | Train loss=0.6201, AUC=0.4832 | Val loss=0.5521, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 005 | Train loss=0.6043, AUC=0.4489 | Val loss=0.5266, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 006 | Train loss=0.6034, AUC=0.4610 | Val loss=0.5065, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 007 | Train loss=0.5910, AUC=0.4435 | Val loss=0.4914, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 008 | Train loss=0.5825, AUC=0.5242 | Val loss=0.4829, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 009 | Train loss=0.5806, AUC=0.5255 | Val loss=0.4762, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 010 | Train loss=0.5774, AUC=0.4926 | Val loss=0.4724, AUC=0.4667
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 011 | Train loss=0.6004, AUC=0.4348 | Val loss=0.4697, AUC=0.4667
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 012 | Train loss=0.5957, AUC=0.4207 | Val loss=0.4703, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 013 | Train loss=0.5999, AUC=0.4435 | Val loss=0.4713, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 014 | Train loss=0.5816, AUC=0.3569 | Val loss=0.4746, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 015 | Train loss=0.5982, AUC=0.4590 | Val loss=0.4767, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 016 | Train loss=0.5892, AUC=0.4294 | Val loss=0.4802, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 017 | Train loss=0.5906, AUC=0.5141 | Val loss=0.4825, AUC=0.4667
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 018 | Train loss=0.5967, AUC=0.4704 | Val loss=0.4842, AUC=0.4667
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 019 | Train loss=0.6040, AUC=0.5047 | Val loss=0.4856, AUC=0.4444
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 020 | Train loss=0.5842, AUC=0.4328 | Val loss=0.4877, AUC=0.4444
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 021 | Train loss=0.5895, AUC=0.6015 | Val loss=0.4882, AUC=0.5333
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 022 | Train loss=0.6043, AUC=0.4879 | Val loss=0.4876, AUC=0.4222
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 023 | Train loss=0.6016, AUC=0.4120 | Val loss=0.4879, AUC=0.4667
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 024 | Train loss=0.5914, AUC=0.5040 | Val loss=0.4888, AUC=0.4222
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 025 | Train loss=0.6059, AUC=0.6606 | Val loss=0.4887, AUC=0.4667
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 026 | Train loss=0.5889, AUC=0.4577 | Val loss=0.4899, AUC=0.4667
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 027 | Train loss=0.6006, AUC=0.4899 | Val loss=0.4895, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 028 | Train loss=0.5888, AUC=0.4341 | Val loss=0.4909, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 029 | Train loss=0.5892, AUC=0.6552 | Val loss=0.4899, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 030 | Train loss=0.5848, AUC=0.6458 | Val loss=0.4885, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 031 | Train loss=0.5997, AUC=0.5457 | Val loss=0.4861, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 032 | Train loss=0.5904, AUC=0.5961 | Val loss=0.4849, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 033 | Train loss=0.5964, AUC=0.5081 | Val loss=0.4837, AUC=0.4889
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 034 | Train loss=0.6049, AUC=0.4879 | Val loss=0.4832, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 035 | Train loss=0.5931, AUC=0.4651 | Val loss=0.4854, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 036 | Train loss=0.5686, AUC=0.5282 | Val loss=0.4872, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 037 | Train loss=0.5957, AUC=0.5282 | Val loss=0.4849, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 038 | Train loss=0.6090, AUC=0.5175 | Val loss=0.4838, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 039 | Train loss=0.5913, AUC=0.5228 | Val loss=0.4843, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Epoch 040 | Train loss=0.5877, AUC=0.6149 | Val loss=0.4851, AUC=0.5111
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Loading best model (val AUC=0.5333)…
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL_structure_only] Final Test Loss=0.5300, Test ROC-AUC=0.3500
+2025-11-27 18:03:41 | INFO | microviral | [ABLATION] Running global GNN with feature_config='structure_time'…
+2025-11-27 18:03:41 | INFO | microviral | [GLOBAL] Building dataset (feature_config='structure_time')…
+2025-11-27 18:03:47 | INFO | microviral | GNN dataset built with 123 cascades (feature_config='structure_time').
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Dataset split: 86 train / 18 val / 19 test graphs.
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Using device: cuda
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Epoch 001 | Train loss=0.6858, AUC=0.4798 | Val loss=0.6467, AUC=0.9111
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Epoch 002 | Train loss=0.6528, AUC=0.5423 | Val loss=0.6004, AUC=0.9556
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Epoch 003 | Train loss=0.6236, AUC=0.5282 | Val loss=0.5566, AUC=0.9333
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Epoch 004 | Train loss=0.6133, AUC=0.4160 | Val loss=0.5194, AUC=0.9556
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Epoch 005 | Train loss=0.5894, AUC=0.6109 | Val loss=0.4941, AUC=0.9333
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Epoch 006 | Train loss=0.5890, AUC=0.5739 | Val loss=0.4751, AUC=0.9556
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Epoch 007 | Train loss=0.5910, AUC=0.5719 | Val loss=0.4652, AUC=0.9333
+2025-11-27 18:03:47 | INFO | microviral | [GLOBAL_structure_time] Epoch 008 | Train loss=0.6119, AUC=0.4489 | Val loss=0.4604, AUC=0.8889
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 009 | Train loss=0.5964, AUC=0.4691 | Val loss=0.4620, AUC=0.8667
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 010 | Train loss=0.5906, AUC=0.5941 | Val loss=0.4655, AUC=0.8889
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 011 | Train loss=0.5860, AUC=0.5517 | Val loss=0.4712, AUC=0.8889
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 012 | Train loss=0.6107, AUC=0.4980 | Val loss=0.4753, AUC=0.8889
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 013 | Train loss=0.5833, AUC=0.6109 | Val loss=0.4809, AUC=0.8889
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 014 | Train loss=0.6002, AUC=0.5040 | Val loss=0.4844, AUC=0.8667
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 015 | Train loss=0.5821, AUC=0.5477 | Val loss=0.4873, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 016 | Train loss=0.5864, AUC=0.5437 | Val loss=0.4871, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 017 | Train loss=0.5946, AUC=0.5699 | Val loss=0.4851, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 018 | Train loss=0.5851, AUC=0.5853 | Val loss=0.4829, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 019 | Train loss=0.5899, AUC=0.5618 | Val loss=0.4798, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 020 | Train loss=0.5810, AUC=0.5148 | Val loss=0.4769, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 021 | Train loss=0.5770, AUC=0.6089 | Val loss=0.4739, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 022 | Train loss=0.5954, AUC=0.5390 | Val loss=0.4714, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 023 | Train loss=0.5873, AUC=0.5806 | Val loss=0.4711, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 024 | Train loss=0.5917, AUC=0.5544 | Val loss=0.4713, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 025 | Train loss=0.5820, AUC=0.5981 | Val loss=0.4722, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 026 | Train loss=0.5822, AUC=0.5887 | Val loss=0.4738, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 027 | Train loss=0.5969, AUC=0.5853 | Val loss=0.4730, AUC=0.8222
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 028 | Train loss=0.5916, AUC=0.5914 | Val loss=0.4735, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 029 | Train loss=0.5874, AUC=0.5786 | Val loss=0.4754, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 030 | Train loss=0.5967, AUC=0.6203 | Val loss=0.4756, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 031 | Train loss=0.5865, AUC=0.6001 | Val loss=0.4768, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 032 | Train loss=0.5773, AUC=0.5981 | Val loss=0.4772, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 033 | Train loss=0.5881, AUC=0.6169 | Val loss=0.4748, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 034 | Train loss=0.5837, AUC=0.5679 | Val loss=0.4752, AUC=0.8444
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 035 | Train loss=0.5908, AUC=0.6183 | Val loss=0.4717, AUC=0.8667
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 036 | Train loss=0.5829, AUC=0.6055 | Val loss=0.4700, AUC=0.8667
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 037 | Train loss=0.5991, AUC=0.5820 | Val loss=0.4688, AUC=0.8667
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 038 | Train loss=0.5897, AUC=0.5981 | Val loss=0.4696, AUC=0.8667
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 039 | Train loss=0.5922, AUC=0.6102 | Val loss=0.4706, AUC=0.8667
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Epoch 040 | Train loss=0.5951, AUC=0.6022 | Val loss=0.4712, AUC=0.8667
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Loading best model (val AUC=0.9556)…
+2025-11-27 18:03:48 | INFO | microviral | [GLOBAL_structure_time] Final Test Loss=0.5301, Test ROC-AUC=0.4000
+2025-11-27 18:03:48 | INFO | microviral | [RESULT] ABLATION GNN metrics: {'full': {'train_auc': 0.7620967741935484, 'val_auc': 0.7333333333333334, 'test_auc': 0.5333333333333333}, 'structure_only': {'train_auc': 0.6149193548387096, 'val_auc': 0.5333333333333333, 'test_auc': 0.35}, 'structure_time': {'train_auc': 0.6021505376344086, 'val_auc': 0.9555555555555556, 'test_auc': 0.4}}
+2025-11-27 18:03:48 | INFO | microviral | === GNN PIPELINE COMPLETE ✅ ===
+2025-11-27 22:44:39 | INFO | microviral | [COLLECT] Fetching submissions from r/politics (limit=2000)…
+2025-11-27 22:44:39 | INFO | microviral | Initializing Reddit client…
+2025-11-27 22:44:39 | INFO | microviral | Fetching 2000 posts from r/politics (mode=top, time_filter=week)
+2025-11-27 22:44:45 | INFO | microviral | Fetched 230 submissions from r/politics
+2025-11-27 22:44:45 | INFO | microviral | [COLLECT] Fetched 230 posts from r/politics.
+2025-11-27 22:44:45 | INFO | microviral | [COLLECT] Building cascades for r/politics…
+2025-11-27 22:44:45 | INFO | microviral | [politics] 1. Leaked recordings prove Putin is making Trump his puppet (comments=1476)
