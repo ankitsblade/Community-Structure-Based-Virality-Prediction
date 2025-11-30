@@ -15,3 +15,5 @@ wheels/
 .python-version
 
 *.log
+
+/reddit

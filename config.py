@@ -43,5 +43,37 @@ RANDOM_STATE = 42
 # Multi-subreddit setup
 # -------------------------------------------------------
 
-SUBREDDITS = ["politics", "worldnews", "technology"]
-POSTS_PER_SUBREDDIT = 2000  # adjust based on how big you want the dataset
+SUBREDDITS = [
+    "AskReddit", "AskScience", "AskHistorians", "AskEconomics", "explainlikeimfive",
+    "todayilearned", "worldnews", "news", "technology", "science",
+    "space", "Futurology", "changemyview", "LifeProTips", "philosophy",
+    "dataisbeautiful", "interestingasfuck", "mildlyinteresting", "nextfuckinglevel", "awesome",
+    "movies", "television", "Documentaries", "Film", "TrueFilm",
+    "gaming", "pcgaming", "buildapc", "PS5", "NintendoSwitch",
+    "india", "indiasocial", "IndianFood", "bangalore", "hyderabad",
+    "books", "WritingPrompts", "nosleep", "shortstories", "FanFiction",
+    "Music", "listentothis", "hiphopheads", "ClassicalMusic", "EDM",
+    "food", "Cooking", "AskCulinary", "baking", "coffee",
+    "sports", "soccer", "nba", "cricket", "formula1",
+    "fitness", "bodyweightfitness", "running", "cycling", "yoga",
+    "personalfinance", "Economics", "stocks", "wallstreetbets", "CryptoCurrency",
+    "learnprogramming", "programming", "cpp", "python", "MachineLearning",
+    "gadgets", "android", "apple", "iOS", "Art",
+    "drawing", "sketches", "Illustration", "Design", "DIY",
+    "lifehacks", "howto", "homelab", "malelivingspace", "history",
+    "historyporn", "AncientHistory", "TheWayWeWere", "relationship_advice", "relationships",
+    "dating_advice", "socialskills", "decidingtobebetter", "productivity", "getdisciplined",
+    "selfimprovement", "Stoicism", "Zen", "psychology", "neuro",
+    "behavioralscience", "ADHD", "travel", "solotravel", "IWantToLearn",
+    "IAmA", "UpliftingNews", "CyberSecurity", "netsec", "opensource",
+    "Linux", "TrueReddit", "DepthHub", "Bestof", "EverythingScience",
+    "TheoreticalPhysics", "wholesomememes", "memes", "funny", "comedy",
+    "dankmemes", "nature", "earthporn", "gardening", "botany",
+    "wildlife", "UrbanExploration", "architecture", "Houseplants", "interiordecorating",
+    "LandscapePhotography", "askphilosophy", "Literature", "linguistics", "math",
+    "statistics", "datascience", "bigdata", "cs50", "computervision",
+    "deeplearning", "internetisbeautiful", "educationalgifs", "casualconversation", "TrueAskReddit",
+]
+
+# Hard cap per subreddit (API / design constraint)
+POSTS_PER_SUBREDDIT = 500

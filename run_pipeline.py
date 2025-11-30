@@ -1,22 +1,46 @@
-# run_pipeline.py
-
+# run_pipeline_bluesky.py
 """
-End-to-end analysis pipeline (no Reddit calls):
+Bluesky classical ML + community analysis pipeline.
 
-- Load cached cascades from data/nodes_multi.parquet
-- Build global user graph & detect communities
-- Compute cascade + community features
-- Label cascades as micro-viral / viral
-- Train baseline ML models (community + dynamics)
-- Train community-only models
-- Generate global figures for distributions & feature importance
-- Visualize one example cascade graph
-- Per-subreddit analysis (metrics + logs, minimal plots)
-- Grouped multi-subreddit plots (label balance + feature-by-label)
+High-level steps:
+1. Load Bluesky cascade nodes from data/bluesky/nodes_multi.parquet
+2. Map primary hashtag -> 'subreddit' (so it plugs into existing tooling)
+3. Build global user graph (using your existing graphs.py)
+4. Detect communities (Louvain or similar)
+5. Attach community IDs back to node table
+6. Build cascade/community feature table (using your existing features.py)
+7. Add virality labels (using your existing add_labels)
+8. Train simple baseline ML models (LogReg + RandomForest) on:
+   - Global dataset
+   - Per-hashtag ("per-subreddit") subsets
+9. Save metrics to results/bluesky/, optionally print summary
+
+This is intentionally self-contained for the ML part, so it doesn’t depend
+on your existing models_ml.py / visuals.py. You can swap that in later if
+you want tighter integration.
 """
+
+from __future__ import annotations
+
+import argparse
+import os
+from pathlib import Path
+from typing import Dict, Any, List
+
+import numpy as np
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import (
+    roc_auc_score,
+    classification_report,
+)
 
 from logger import logger
-from config import EARLY_K
 from data_io import load_nodes_df
 from graphs import (
     build_global_user_graph,
@@ -26,153 +50,308 @@ from graphs import (
 from features import (
     build_feature_table,
     add_labels,
-    get_early_adopters,
 )
-from models_ml import (
-    train_baseline_models,
-    train_community_only_model,
-    inspect_logreg_coeffs_community,
-)
-from visuals import (
-    plot_cascade_size_distribution,
-    plot_label_balance,
-    plot_feature_importances,
-    plot_cascade_graph,
-    plot_feature_by_label,
-    plot_label_balance_multi,
-    plot_feature_by_label_multi,
-)
+
+
+# ----------------------------------------------------------------------
+# Helpers
+# ----------------------------------------------------------------------
+
+
+def _ensure_bluesky_subreddit_column(nodes_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    For Bluesky, we treat the primary hashtag as 'subreddit' so the
+    downstream code (graphs, features, etc.) can remain unchanged.
+
+    Expected columns coming from your Bluesky nodes builder:
+        - cascade_id
+        - root_uri
+        - primary_hashtag
+        - author_did
+        - event_type
+        - timestamp
+    """
+    df = nodes_df.copy()
+
+    if "subreddit" not in df.columns:
+        if "primary_hashtag" not in df.columns:
+            raise ValueError(
+                "Bluesky nodes are missing both 'subreddit' and 'primary_hashtag'. "
+                "Make sure your bluesky_nodes pipeline writes 'primary_hashtag'."
+            )
+        logger.info("Mapping primary_hashtag → subreddit for Bluesky.")
+        df["subreddit"] = df["primary_hashtag"]
+
+    return df
+
+
+def _select_feature_columns(feature_df: pd.DataFrame) -> List[str]:
+    """
+    Select numeric feature columns for ML.
+    We drop obvious non-feature stuff like IDs / labels / group names.
+    """
+    drop_cols = {"cascade_id", "label", "subreddit", "primary_hashtag", "root_uri"}
+    numeric_cols = [
+        c
+        for c in feature_df.columns
+        if c not in drop_cols and np.issubdtype(feature_df[c].dtype, np.number)
+    ]
+
+    if not numeric_cols:
+        raise ValueError("No numeric feature columns found for ML.")
+
+    return numeric_cols
+
+
+def _train_single_model(
+    X: pd.DataFrame,
+    y: pd.Series,
+    model_name: str,
+    random_state: int = 42,
+) -> Dict[str, Any]:
+    """
+    Train two simple baselines:
+    - Logistic Regression (LR)
+    - Random Forest (RF)
+
+    Returns metrics for both.
+    """
+
+    results = {}
+
+    # Some setups will have 2 classes, others 3 (e.g., low/mid/high virality).
+    classes = sorted(y.unique())
+    n_classes = len(classes)
+    logger.info(f"[{model_name}] Classes: {classes} (n={n_classes})")
+
+    # Train/val split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.25, random_state=random_state, stratify=y
+    )
+
+    # -----------------------------
+    # Logistic Regression pipeline
+    # -----------------------------
+    lr_pipe = Pipeline(
+        steps=[
+            ("scaler", StandardScaler()),
+            ("clf", LogisticRegression(
+                max_iter=500,
+                multi_class="auto",
+                n_jobs=-1,
+            )),
+        ]
+    )
+
+    lr_pipe.fit(X_train, y_train)
+    y_prob_lr = lr_pipe.predict_proba(X_test)
+    y_pred_lr = lr_pipe.predict(X_test)
+
+    if n_classes == 2:
+        # use prob of positive class
+        auc_lr = roc_auc_score(y_test, y_prob_lr[:, 1])
+    else:
+        auc_lr = roc_auc_score(
+            y_test, y_prob_lr, multi_class="ovr"
+        )
+
+    results["logreg_auc"] = float(auc_lr)
+    results["logreg_report"] = classification_report(
+        y_test, y_pred_lr, output_dict=True
+    )
+
+    # -----------------------------
+    # Random Forest
+    # -----------------------------
+    rf = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=None,
+        min_samples_split=2,
+        min_samples_leaf=1,
+        n_jobs=-1,
+        random_state=random_state,
+    )
+    rf.fit(X_train, y_train)
+    y_prob_rf = rf.predict_proba(X_test)
+    y_pred_rf = rf.predict(X_test)
+
+    if n_classes == 2:
+        auc_rf = roc_auc_score(y_test, y_prob_rf[:, 1])
+    else:
+        auc_rf = roc_auc_score(
+            y_test, y_prob_rf, multi_class="ovr"
+        )
+
+    results["rf_auc"] = float(auc_rf)
+    results["rf_report"] = classification_report(
+        y_test, y_pred_rf, output_dict=True
+    )
+
+    logger.info(
+        f"[{model_name}] LogReg AUC: {auc_lr:.4f} | "
+        f"RandomForest AUC: {auc_rf:.4f}"
+    )
+
+    return results
+
+
+def _run_global_ml(feature_df: pd.DataFrame) -> Dict[str, Any]:
+    feature_cols = _select_feature_columns(feature_df)
+    X = feature_df[feature_cols]
+    y = feature_df["label"]
+
+    logger.info(f"Global ML: using {len(feature_cols)} numeric features.")
+    return _train_single_model(X, y, model_name="GLOBAL")
+
+
+def _run_per_subreddit_ml(feature_df: pd.DataFrame, min_cascades: int = 30) -> Dict[str, Any]:
+    """
+    Run baseline models separately for each subreddit/hashtag,
+    but only if there are at least `min_cascades` cascades.
+    """
+    results = {}
+    if "subreddit" not in feature_df.columns:
+        logger.warning("No 'subreddit' column in feature_df – skipping per-subreddit ML.")
+        return results
+
+    for sub, df_sub in feature_df.groupby("subreddit"):
+        if len(df_sub) < min_cascades:
+            logger.info(
+                f"[{sub}] Skipping per-subreddit ML (only {len(df_sub)} cascades, "
+                f"need >= {min_cascades})."
+            )
+            continue
+
+        logger.info(f"[{sub}] Running per-subreddit ML on {len(df_sub)} cascades.")
+        feature_cols = _select_feature_columns(df_sub)
+        X_sub = df_sub[feature_cols]
+        y_sub = df_sub["label"]
+
+        results[sub] = _train_single_model(
+            X_sub,
+            y_sub,
+            model_name=f"SUBREDDIT::{sub}",
+        )
+
+    return results
+
+
+def _save_json(obj: Dict[str, Any], path: Path) -> None:
+    import json
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(obj, f, indent=2)
+
+
+# ----------------------------------------------------------------------
+# Main pipeline
+# ----------------------------------------------------------------------
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Bluesky virality pipeline (classical ML + community features)."
+    )
+    parser.add_argument(
+        "--nodes-path",
+        type=str,
+        default="data/bluesky/nodes_multi.parquet",
+        help="Path to Bluesky nodes_multi.parquet",
+    )
+    parser.add_argument(
+        "--results-dir",
+        type=str,
+        default="results/bluesky",
+        help="Directory to save metrics JSONs.",
+    )
+    parser.add_argument(
+        "--min-cascades-per-tag",
+        type=int,
+        default=30,
+        help="Minimum number of cascades per hashtag to run per-tag models.",
+    )
+    return parser.parse_args()
 
 
 def main():
-    # ----------------------------------------------------
-    # 1. Load cached cascades
-    # ----------------------------------------------------
-    logger.info("Loading cached multi-subreddit cascades from data/nodes_multi.parquet…")
-    nodes_df = load_nodes_df("data/nodes_multi.parquet")
-    logger.info(f"Total nodes loaded: {len(nodes_df)}")
-    if "subreddit" in nodes_df.columns:
-        logger.info(f"Subreddits present: {nodes_df['subreddit'].value_counts().to_dict()}")
+    args = parse_args()
 
-    # ----------------------------------------------------
-    # 2. Global user graph + communities
-    # ----------------------------------------------------
-    logger.info("Building user graph and communities across all subreddits…")
-    user_graph = build_global_user_graph(nodes_df)
-    partition = detect_communities(user_graph)
+    logger.info("=== BLUESKY PIPELINE (CLASSICAL ML) START ===")
+    logger.info(f"Loading Bluesky nodes from {args.nodes_path!r}")
 
-    logger.info("Attaching community IDs to nodes…")
+    if not os.path.exists(args.nodes_path):
+        raise FileNotFoundError(
+            f"Nodes file not found at {args.nodes_path}. "
+            "Run your Bluesky nodes builder first."
+        )
+
+    # ------------------------------------------------------------------
+    # 1. Load nodes + normalize subreddit / hashtag
+    # ------------------------------------------------------------------
+    nodes_df = load_nodes_df(args.nodes_path)
+    logger.info(f"Loaded {len(nodes_df)} node events.")
+
+    nodes_df = _ensure_bluesky_subreddit_column(nodes_df)
+
+    logger.info(
+        f"Subreddit/hashtag distribution: "
+        f"{nodes_df['subreddit'].value_counts().to_dict()}"
+    )
+
+    # ------------------------------------------------------------------
+    # 2. Build global user graph + detect communities
+    # ------------------------------------------------------------------
+    logger.info("Building global user graph from Bluesky nodes…")
+    G = build_global_user_graph(nodes_df)
+
+    logger.info("Detecting communities (Louvain / modularity-based)…")
+    partition = detect_communities(G)
+
+    logger.info("Attaching community IDs back to nodes…")
     nodes_with_comm = attach_communities_to_nodes(nodes_df, partition)
 
-    # ----------------------------------------------------
-    # 3. Features + labeling (global)
-    # ----------------------------------------------------
-    logger.info("Computing feature table…")
+    # ------------------------------------------------------------------
+    # 3. Build cascade/community features + virality labels
+    # ------------------------------------------------------------------
+    logger.info("Building cascade + community feature table…")
     feature_df = build_feature_table(nodes_with_comm)
     logger.info(f"Feature table shape: {feature_df.shape}")
 
-    # Global cascade size distribution
-    plot_cascade_size_distribution(feature_df)
-
-    logger.info("Labeling cascades (global quantiles)…")
+    logger.info("Adding virality labels using global quantiles…")
     labeled_df = add_labels(feature_df)
-    logger.info(f"Number of labeled cascades: {len(labeled_df)}")
-    logger.info(f"Label distribution (all subs):\n{labeled_df['label'].value_counts()}")
 
-    # Global label balance
-    plot_label_balance(labeled_df)
-
-    # ----------------------------------------------------
-    # 4. Global models (all subreddits combined)
-    # ----------------------------------------------------
-    logger.info("Running baseline ML models (community + dynamics) on ALL subreddits…")
-    auc_logreg, auc_rf, rf_model, feature_cols = train_baseline_models(labeled_df)
     logger.info(
-        f"[GLOBAL] Baseline LogReg AUC={auc_logreg:.4f}, RandomForest AUC={auc_rf:.4f}"
+        "Label distribution (global): "
+        f"\n{labeled_df['label'].value_counts()}"
     )
-    plot_feature_importances(feature_cols, rf_model.feature_importances_)
 
-    logger.info("Running community-only models for interpretability (ALL subreddits)…")
-    train_community_only_model(labeled_df)
-    inspect_logreg_coeffs_community(labeled_df)
+    # ------------------------------------------------------------------
+    # 4. Global baseline ML
+    # ------------------------------------------------------------------
+    logger.info("\n=== GLOBAL BASELINE MODELS (Bluesky) ===")
+    global_results = _run_global_ml(labeled_df)
 
-    # Community feature distributions by label (global)
-    for feat in ["comm_concentration", "comm_entropy", "comm_count"]:
-        plot_feature_by_label(labeled_df, feat)
+    # ------------------------------------------------------------------
+    # 5. Per-hashtag / per-subreddit ML
+    # ------------------------------------------------------------------
+    logger.info("\n=== PER-HASHTAG BASELINE MODELS (Bluesky) ===")
+    per_sub_results = _run_per_subreddit_ml(
+        labeled_df,
+        min_cascades=args.min_cascades_per_tag,
+    )
 
-    # ----------------------------------------------------
-    # 5. Example cascade graph (global)
-    # ----------------------------------------------------
-    if not labeled_df.empty:
-        example_sub = labeled_df["submission_id"].iloc[0]
-        early = get_early_adopters(nodes_with_comm, example_sub, k=EARLY_K)
-        plot_cascade_graph(
-            nodes_with_comm,
-            submission_id=example_sub,
-            early_authors=early,
-            max_nodes=250,
-        )
+    # ------------------------------------------------------------------
+    # 6. Save metrics
+    # ------------------------------------------------------------------
+    results_dir = Path(args.results_dir)
+    _save_json(global_results, results_dir / "metrics_global.json")
+    _save_json(per_sub_results, results_dir / "metrics_per_subreddit.json")
 
-    # ----------------------------------------------------
-    # 6. Per-subreddit analysis (metrics only, minimal plots)
-    # ----------------------------------------------------
-    if "subreddit" not in labeled_df.columns:
-        logger.warning("No 'subreddit' column in labeled_df – skipping per-subreddit analysis.")
-        logger.info("Analysis pipeline complete. ✅")
-        return
+    logger.info(f"Saved global metrics → {results_dir / 'metrics_global.json'}")
+    logger.info(f"Saved per-subreddit metrics → {results_dir / 'metrics_per_subreddit.json'}")
 
-    logger.info("Starting per-subreddit analysis (metrics + logs, minimal figures)…")
-
-    for sub in labeled_df["subreddit"].dropna().unique():
-        sub_df = labeled_df[labeled_df["subreddit"] == sub]
-
-        logger.info(f"\n[Per-subreddit] r/{sub}")
-        logger.info(f"  Number of labeled cascades: {len(sub_df)}")
-        logger.info(f"  Label distribution:\n{sub_df['label'].value_counts()}")
-
-        # Need at least both classes
-        if sub_df["label"].nunique() < 2:
-            logger.warning(f"  r/{sub}: only one label present – skipping ML models.")
-            continue
-
-        if len(sub_df) < 50:
-            logger.warning(
-                f"  r/{sub}: only {len(sub_df)} cascades – results may be unstable; running anyway."
-            )
-
-        # Per-subreddit baseline models (community + dynamics)
-        try:
-            logger.info(f"  Training baseline models for r/{sub}…")
-            auc_logreg_sub, auc_rf_sub, _, _ = train_baseline_models(sub_df)
-            logger.info(
-                f"  r/{sub}: Baseline LogReg AUC={auc_logreg_sub:.4f}, "
-                f"RF AUC={auc_rf_sub:.4f}"
-            )
-        except ValueError as e:
-            logger.warning(f"  r/{sub}: skipping baseline models due to error: {e}")
-
-        # Per-subreddit community-only models
-        try:
-            logger.info(f"  Training community-only models for r/{sub}…")
-            train_community_only_model(sub_df)
-            inspect_logreg_coeffs_community(sub_df)
-        except ValueError as e:
-            logger.warning(f"  r/{sub}: skipping community-only models due to error: {e}")
-
-    # ----------------------------------------------------
-    # 7. Grouped multi-subreddit plots (compact visuals)
-    # ----------------------------------------------------
-    logger.info("Creating grouped multi-subreddit plots…")
-
-    # One grouped label-balance plot
-    plot_label_balance_multi(labeled_df)
-
-    # One grouped feature-by-label plot per key community feature
-    for feat in ["comm_concentration", "comm_entropy", "comm_count"]:
-        plot_feature_by_label_multi(labeled_df, feat)
-
-    logger.info("Per-subreddit analysis complete. ✅")
-    logger.info("Full analysis pipeline complete. ✅")
+    logger.info("=== BLUESKY PIPELINE COMPLETE ✅ ===")
 
 
 if __name__ == "__main__":
