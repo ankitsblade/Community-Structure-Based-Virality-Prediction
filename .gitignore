@@ -1,19 +1,14 @@
-# Python-generated files
 __pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
-
-# Virtual environments
-.venv
-
-
+*.pyc
+.venv/
 .env
-
-.python-version
-
+wandb/
+data/
+results/
+figs/
+figures_old/
 *.log
-
-/reddit
+.ipynb_checkpoints/
+.DS_Store
+spd.py
+dataset/

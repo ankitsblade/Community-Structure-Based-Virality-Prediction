@@ -1,47 +1,122 @@
 # 🧵 Community-Structure-Based Virality Prediction
 
-Predicting whether a Reddit post becomes **micro-viral** or **viral** using:
+This project predicts whether a Reddit post becomes **micro-viral** or **viral** using:
 
 * Multi-subreddit cascade extraction
-* Community structure analysis
-* Early cascade dynamics
+* Community structure analysis via user-graph Louvain detection
+* Cascade structural + temporal features
 * Classical ML models
 * Graph Neural Networks (GraphSAGE)
+* Cross-subreddit and early-cascade prediction
 
-This repository provides the full, modular pipeline for collection, processing, analysis, and visualization.
+The pipeline supports **two data sources**:
+
+1. **Arctic Shift Reddit Comment/Submission Dump** (research dump)
+2. **Live PRAW API collection** (for fresh cascades)
 
 ---
 
-## 📁 Project Structure
+# 📁 Final Project Structure
 
 ```
 Community-Structure-Based-Virality-Prediction/
 │
-├── collect_cascades.py       # Multi-subreddit Reddit data collection
-├── run_pipeline.py           # Feature engineering + classical ML analysis
-├── run_gnn.py                # GraphSAGE training (optional)
+├── collect_cascades.py              # Reddit data collection using PRAW
+├── data_util/
+│   ├── __init__.py
+│   ├── cascades.py                  # Submission → cascade extraction
+│   ├── collect_cascades_pushshift.py
+│   ├── collect_cascades.py          # Multi-subreddit cascade loader
+│   └── reddit_client.py             # PRAW client + API helpers
 │
-├── microviral/
-│   ├── config.py             # Subreddit list, constants, thresholds
-│   ├── logger.py             # Logging setup
-│   ├── reddit_client.py      # PRAW client + submission fetcher
-│   ├── cascades.py           # Post → cascade node extraction
-│   ├── graphs.py             # User graph + Louvain communities
-│   ├── features.py           # Feature extraction + virality labeling
-│   ├── models_ml.py          # Logistic Regression + Random Forest
-│   ├── visuals.py            # All plots
-│   ├── data_io.py            # Save/load utilities
-│   └── gnn.py                # GraphSAGE architecture + dataset builder
+├── dataset/                         # Arctic Shift Dataset (2023-11 reddit data)
 │
-├── data/                     # Cached cascade datasets
-└── figures/                  # Generated visualizations
+├── features/
+│   ├── __init__.py
+│   └── features.py                  # Structural, temporal, community features
+│
+├── figures/
+│   ├── classicml/                   # Classical ML visuals
+│   ├── gnn/                         # GNN visuals
+│   ├── figures_old/
+│   └── reddit/
+│
+├── misc/
+│   └── graphviz.sh                  # To Download graphviz on non-sudo compute
+│
+├── models/
+│   ├── __init__.py
+│   ├── gnn.py                       # GraphSAGE + GNN dataset builder
+│   └── models_ml.py                 # Logistic Regression + Random Forest
+│
+├── notebooks/
+│   └── Experiments.ipynb            # Scratch experiments
+│
+├── Training/
+│   ├── run_gnn.py                   # GNN pipeline runner
+│   └── run_pipeline.py              # Classical ML pipeline runner
+│
+├── util/
+│   ├── __init__.py
+│   ├── data_io.py                   # Save/load utilities
+│   ├── graphs.py                    # User graph + Louvain communities
+│   └── metrics.py                   # ROC-AUC helper
+│
+├── viz/
+│   └── visuals.py                   # All visualizations
+│
+│── config.py                        # Subreddit list + constants
+│── logger.py                        # Logging setup
+│── microviral.log                   # Log file
+│── README.md
+│── pyproject.toml
+│── .env
+│── .gitignore
+└── uv.lock
 ```
 
 ---
 
-## 🚀 Quick Start
+# 🧊 Data Sources Used
 
-### 1️⃣ Create the virtual environment with **uv**
+### **1️⃣ Arctic Shift Reddit Dump**
+
+This project uses the **Arctic Shift Reddit dataset**, a research-focused archived dump containing:
+
+* Reddit submissions
+* Reddit comments
+* Author IDs
+* Subreddit metadata
+* Timestamps
+
+It provides the **core comment trees** for building cascade structures.
+
+### **2️⃣ PRAW API (Python Reddit API Wrapper)**
+
+To supplement or refresh data, PRAW is used for:
+
+* Fetching recent submissions
+* Getting full comment trees
+* Extracting reply chains
+* Collecting subreddit-specific cascades
+
+The PRAW client is defined in:
+
+```
+data_util/reddit_client.py
+```
+
+You may run only Arctic Shift data, only PRAW data, or combine both.
+
+---
+
+# 🚀 How to Run
+
+This section explains how to reproduce your dataset, extract features, train models, and generate all figures.
+
+---
+
+## 1️⃣ Install environment using **uv**
 
 ```bash
 uv sync
@@ -50,96 +125,132 @@ uv sync
 This:
 
 * Creates `.venv/`
-* Installs **all dependencies** listed in `pyproject.toml`
-* Sets up the environment exactly as needed
-  No manual `pip install` steps are required.
+* Installs all dependencies from `pyproject.toml`
+* Ensures consistent environment
+
+No manual `pip install` required.
 
 ---
 
-### 2️⃣ Configure Reddit API
+## 2️⃣ Add Reddit API Credentials (PRAW Use Only)
 
-Create a `.env` file in the project root:
+Create `.env`:
 
 ```
-CLIENT_ID=...
-CLIENT_SECRET=...
-USERNAME=...
-PASSWORD=...
-USER_AGENT=microviral_app:v1.0
+CLIENT_ID=xxxx
+CLIENT_SECRET=xxxx
+USERNAME=xxxx
+PASSWORD=xxxx
+USER_AGENT=microviral:v1.0
 ```
+
+If using only the Arctic Shift dump, this step is optional.
 
 ---
 
-## 🕸️ Data Collection (Multi-Subreddit)
+## 3️⃣ Obtain or Generate the Dataset
 
-Fetch cascades across configured subreddits:
+### Option A — Use Arctic Shift Reddit Dump
+
+Place the processed/parquet dump inside:
+
+```
+dataset/
+```
+
+The pipeline automatically loads it.
+
+### Option B — Collect Fresh Cascades Using PRAW
 
 ```bash
 python collect_cascades.py
 ```
 
-Output:
+This produces:
 
 ```
-data/nodes_multi.parquet
+dataset/nodes_multi.parquet
 ```
+
+Containing:
+
+* All nodes (submissions + comments)
+* Parent/child edges
+* Author IDs
+* Subreddit labels
+* Timestamps, scores, depths
 
 ---
 
-## 🧮 Classical ML + Community Analysis Pipeline
+## 4️⃣ Run the Classical ML Pipeline
 
 ```bash
-python run_pipeline.py
+python Training/run_pipeline.py
 ```
 
-This script:
+This performs:
 
-* Builds global user graph
-* Detects Louvain communities
-* Extracts cascade + community features
-* Labels cascades (micro-viral vs viral)
-* Trains baseline ML models
-* Saves all plots to `figures/`
+* User graph construction
+* Louvain community detection
+* Modularity computation
+* Feature extraction
+* Virality labeling
+* Training LogReg + RandomForest
+* Per-subreddit metrics
+* Exhaustive visualizations
+
+Results saved to:
+
+```
+figures/classicml/
+dataset/
+```
 
 ---
 
-## 🧠 Graph Neural Network (Optional)
+## 5️⃣ Run the GNN Pipeline
 
 ```bash
-python run_gnn.py
+python Training/run_gnn.py
 ```
 
-* Builds PyTorch Geometric dataset
-* Trains GraphSAGE on cascade graphs
-* Reports train/val/test ROC-AUC
+This runs:
+
+* GraphSAGE training
+* Per-subreddit GNN models
+* Cross-subreddit generalization
+* Feature ablation studies
+
+Outputs saved to:
+
+```
+figures/gnn/
+results/gnn/
+```
 
 ---
 
-## 🧩 What the Pipeline Does (Short)
+# 🧩 Summary of the Pipeline
 
-* Collect Reddit cascades
-* Build unified node-level dataset
-* Model early community structure
-* Extract features & label cascades
-* Train models (LogReg, RF, GNN)
-* Compare performance across subreddits
-* Generate ROC curves, feature importance, and cascade visuals
+This project performs:
 
----
+1. Multi-subreddit cascade extraction (Arctic Shift + PRAW)
+2. User-graph construction (reply network)
+3. Louvain community structure detection
+4. Feature engineering:
 
-## 📊 Example Outputs
-
-Saved to `figures/`:
-
-* Per-subreddit ROC curves
-* Virality model comparison curves
-* Feature importance plots
-* Cascade graphs
-* Mock result generators for poster creation
+   * Depth, branching, entropy
+   * Temporal bursts (time to 5, time-normalized flow)
+   * Community attributes
+5. Global virality labeling
+6. Classical ML baselines
+7. Graph Neural Network modeling (GraphSAGE)
+8. Cross-subreddit + per-subreddit experiments
+9. Feature ablations
+10. Automatic figure generation for posters/papers
 
 ---
 
-## 📜 License
+## Poster [Submitted for CS4222 Social Computing]
 
-MIT License.
-
+![alt text](<SocialComp Poster-1.png>)
